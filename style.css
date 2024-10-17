@@ -1,0 +1,633 @@
+/* Basic reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.satisfy-regular {
+    font-family: "Satisfy", cursive;
+    font-weight: 400;
+    font-style: normal;
+  }
+
+  
+
+body, html {
+    height: 100%;
+    font-family: Arial, sans-serif;
+}
+
+/* Navbar styling */
+.navbar {
+    background:transparent;
+    color: white;
+    padding: 10px 20px;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+.navbar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar ul {
+    list-style: none;
+    display: flex;
+}
+
+.navbar ul li {
+    margin-left: 20px;
+}
+
+.navbar ul li a {
+    color: white;
+    text-decoration: none;
+}
+
+.navbar ul li a:hover {
+    text-decoration:underline;
+}
+
+.navbar-logo{
+    border-radius: 50%;
+    width: 10%;
+    height: 10%;
+}
+
+/* Hero section with background image */
+.hero-section {
+    background-image: url(bgrobot.jpeg); /* Replace with your background image */
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    position: relative;
+    padding-top: 60px; /* Offset for navbar height */
+    color: white;
+    text-align: center;
+}
+
+.hero-section .content {
+    padding: 20px;
+    position: relative;
+    z-index: 0;
+}
+
+/* PNG image positioned to the right */
+.right-image {
+    position: fixed;
+    right: -30px;
+    top: 387px;
+    transform: translateY(-50%);
+    z-index: 0;
+    width: 62%; /* Adjust size as needed */
+}
+.left-image{
+    /* position: fixed;
+    left: 200px;
+    top: 20px;
+    
+    width: 10%; */
+    position: relative;
+    left:-15px;
+    top: 20px;
+    transform: translateX(-300%);
+    width:10%;
+    /* z-index: 0; */
+}
+.devil h1{
+    display: flex;
+    border-radius: 5px;
+    font-size: 2em;
+    writing-mode: vertical-lr;
+    font-weight: bold;
+    position: relative;
+    font-family: Satisfy;
+    left:320px;
+    top: -180px;
+    width: 150px;
+}
+
+
+
+
+.devil h2{
+    display: flex;
+    border-radius: 5px;
+    font-size: 3em;
+    writing-mode:horizontal-tb;
+    font-weight: bold;
+    position: relative;
+    font-family: Satisfy;
+    left:110px;
+    top: -200px;
+    width:20px;
+    z-index: 0;
+}
+
+.bottom{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: fixed;
+    bottom: 0;
+    height: 30vh;
+    left: 70px;
+    width: 90%;
+    /* glassmorphism part */
+    background-color:transparent;
+    backdrop-filter: blur(20px);
+    background-image: linear-gradient(
+        120deg,
+        rgba(255, 255, 255, 0.3),
+        rgba(0, 0, 0, 0.2)
+    );
+    background-size: 30px 30px;
+    /* glassmorphism part */
+    z-index: 1000;
+    padding: 20px;
+    border-top-left-radius:50px;
+    border-top-right-radius: 50px;
+
+}
+
+
+
+/* mine */
+
+.bottom .card1{
+    display: flex;
+    position: relative;
+    left:30px;
+    top: 5px;
+    background-color:transparent;
+    justify-content: space-between;
+    align-items: center;
+    width: 15%;
+    height: 100%;
+    border-radius: 10px;
+}
+.bottom .card2{
+    display: flex;
+    position: relative;
+    left:-411px;
+    top: 5px;
+    background-color:transparent;
+    justify-content: space-between;
+    align-items: center;
+    width: 15%;
+    height: 100%;
+    border-radius: 10px;
+}
+.card1 img{
+    display: flex;
+    position: relative;
+    margin: 10px;
+    background-color: rgb(141, 100, 51);
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+}
+.card2 img{
+    display: flex;
+    position: relative;
+    margin: 10px;
+    background-color: rgb(141, 100, 51);
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+}
+
+
+/* mine */
+/* home-section */
+.home-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100vh;
+    background-color: #a89cc3; /* Background color for contrast */
+    position: relative;
+    padding-top: 60px; /* To avoid overlap with navbar */
+}
+
+/* Left Side Image */
+.home-left {
+    width: 50%; /* Image occupies 40% of the screen */
+    display: flex;
+    position: relative;
+    top: 20px;
+    justify-content: center;
+    align-items: center;
+}
+
+.home-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+/* Right Side Glassmorphism Effect */
+.home-right {
+    width: 60%; /* The description occupies 60% of the screen */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.glassmorphism-box {
+    background: rgba(255, 255, 255, 0.1); /* Transparent white background */
+    border-radius: 20px;
+    padding: 20px;
+    backdrop-filter: blur(10px); /* Apply the frosted glass effect */
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); /* Soft shadow */
+    border: 1px solid rgba(255, 255, 255, 0.3); /* Subtle border */
+    color: #333;
+    max-width: 500px; /* Limit the width of the glass box */
+    text-align: center;
+}
+
+.glassmorphism-box h2 {
+    margin-bottom: 15px;
+    font-size: 24px;
+}
+
+.glassmorphism-box p {
+    font-size: 16px;
+}
+/* home-section */
+/* speech-bubble */
+.speech-container {
+    position: relative; /* Container for image and speech bubble */
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+
+/* Speech bubble styling */
+.speech-bubble {
+    position: relative;
+    left: -250px;
+    top: -100px;
+    background: #fff;
+    border-radius: 50px;
+    padding: 30px;
+    height: 30vh;
+    width: 400px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    background-color:transparent;
+    backdrop-filter: blur(20px);
+    background-image: linear-gradient(
+        120deg,
+        rgba(255, 255, 255, 0.3),
+        rgba(0, 0, 0, 0.2)
+    );
+    /* background-size: 30px 30px; */
+}
+
+/* Triangle for the speech bubble tail */
+.speech-bubble:after {
+    content: '';
+    position: absolute;
+    top: 50%; /* Vertically aligns the tail */
+    left: -24px; /* Position the tail on the left */
+    border-width: 12px;
+    border-style: solid;
+    border-color: transparent hsl(270, 21%, 58%) transparent transparent; /* The triangle is a speech bubble tail */
+    transform: translateY(-150%);
+    /* background-size: 30px 30px; */
+}
+
+.speech-bubble p {
+    margin: 0;
+    color: #333;
+    font-size: 16px;
+}
+
+
+/* speech-bubble */
+/* about-section */
+.speech-container-about {
+    position: relative; /* Container for image and speech bubble */
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+
+/* Speech bubble styling */
+.speech-bubble-about {
+
+    position: relative;
+    left: 330px;
+    top: -20px;
+    justify-content: space-between;
+    background: #fff;
+    border-radius: 50px;
+    padding: 30px;
+    height: 35vh;
+    width: 500px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    background-color:transparent;
+    backdrop-filter: blur(20px);
+    background-image: linear-gradient(
+        120deg,
+        rgba(255, 255, 255, 0.3),
+        rgba(0, 0, 0, 0.2)
+    );
+    /* background-size: 30px 30px; */
+}
+
+/* Triangle for the speech bubble tail */
+.speech-bubble-about:after {
+    content: '';
+    position: absolute;
+    top: 30%; /* Vertically aligns the tail */
+    left: 500px; /* Position the tail on the left */
+    border-width: 12px;
+    border-style: solid;
+    border-color: transparent #849683 transparent transparent; /* The triangle is a speech bubble tail */
+    background-image: linear-gradient(
+        120deg,
+        rgba(248, 244, 244, 0.3),
+        rgba(0, 0, 0, 0.2)
+    );
+    transform: translateY(-50%);
+    rotate: 180deg;
+}
+
+.speech-bubble-about p {
+    margin: 0;
+    color: #333;
+    font-size: 16px;
+}
+
+
+
+
+
+
+
+
+
+.about-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100vh;
+    background-color: #9dc39c; /* Background color for contrast */
+    position: relative;
+    padding-top: 60px; /* To avoid overlap with navbar */
+}
+
+/* Left Side Image */
+.about-right {
+    width: 40%; /* Image occupies 40% of the screen */
+    /* display: flex; */
+    position: relative;
+    top: 83px;
+    justify-content: center;
+    align-items: center;
+}
+
+.about-image {
+    /* position: relative;
+    top: 0px;
+    width: 110%; */
+    position: relative;
+    right: 13px;
+    top: -36px;
+    /* transform: translateY(-50%); */
+    width: 100%;
+    /* max-width: 100%;
+    height: auto;
+    border-radius: 10px; */
+}
+
+/* Right Side Glassmorphism Effect */
+.about-left {
+    width: 60%; /*The description occupies 60% of the screen */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.glassmorphism-box {
+    background: rgba(255, 255, 255, 0.1); /* Transparent white background */
+    border-radius: 20px;
+    padding: 20px;
+    backdrop-filter: blur(10px); /* Apply the frosted glass effect */
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); /* Soft shadow */
+    border: 1px solid rgba(255, 255, 255, 0.3); /* Subtle border */
+    color: #333;
+    max-width: 500px; /* Limit the width of the glass box */
+    text-align: center;
+}
+
+.glassmorphism-box h2 {
+    margin-bottom: 15px;
+    font-size: 24px;
+}
+
+.glassmorphism-box p {
+    margin-top: 10px;
+    font-size: 16px;
+}
+/* about-section */
+
+/* .home-section{
+    display: none;
+    width: 100%;
+}
+#home:target {
+    display: flex;
+    justify-content:space-around; 
+} */
+
+
+
+
+
+
+
+/* .card-pair {
+    display:none; 
+    width: 100%; 
+}
+
+#pair1:target, #pair2:target, #pair3:target {
+    display: flex;
+    justify-content: space-between; 
+}
+
+.card1{
+    display: flex;
+    position: relative;
+    left: 40px;
+    top: 5px;
+    width: 40%;
+    height: 65%;
+    border-radius: 10px;
+    /* margin-right: 10px; */
+    /* width: 70%;
+    height:60%;
+    text-align:right; */
+}
+.card2 {
+    /* display: flex;
+    position:relative;
+    left: -75px;
+    top: 5px;
+    width: 40%;
+    height: 65%;
+    border-radius: 10px; */
+    /* margin-right: 10px; */
+    /* width: 70%;
+    height:60%;
+    text-align:right; */
+}
+
+.card1 img, .card2 img {
+    /* position: fixed; */
+    /* width: 250px;
+    height:180px;
+    max-height: 200px;
+    border-radius: 10px;
+    margin-right: 10px; */
+    /* display: flex;
+    position: relative;
+    margin: 10px;
+    background-color: rgb(141, 100, 51);
+    justify-content: space-between;
+    align-items: center;
+    width: 40%;
+    height: 80%;
+    border-radius: 10px; */
+}
+
+.card1 p, .card2 p {
+    margin-top: 10px;
+    font-size: 16px;
+    color: #1a1616;
+}
+
+.navigation {
+    text-align: right;
+    position:fixed;
+    left: 1133px;
+    top: 20px;
+    writing-mode: vertical-rl;
+    text-orientation: upright;
+    margin-top: 10px;
+}
+
+.nav-btn {
+    display:inline-block;
+    padding: 7px;
+    gap: 10px;
+    margin: 0 5px;
+    background-color: #333;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.nav-btn:hover {
+    background-color: #555;
+} 
+/* .main{
+    width: 50%;
+    height: 50vh;
+    display: flex;
+    position: relative;
+    left: -200px;
+    bottom: -90px;
+    align-items: center;
+    justify-content: center;
+    background:#9dc39c;
+} */
+
+.icon{
+    width: 65px;
+    height: 65px;
+    position: relative;
+    left: -150px;
+    top: 50px;
+    border-radius: 100px;
+    background:#9dc39c;
+    margin: 20px;
+    text-align: center;
+    font-size: 30px;
+    line-height: 65px;
+    font-family: sans-serif;
+    overflow: hidden;
+    box-shadow: 5px 10px 20px rgba(150, 150, 150, .3);
+    transition: all .3s ease-out;
+
+    background-color:transparent;
+    backdrop-filter: blur(20px);
+    background-image: linear-gradient(
+        120deg,
+        rgba(255, 255, 255, 0.3),
+        rgba(0, 0, 0, 0.2)
+    );
+
+}
+/* .icon:hover{
+    width: 200px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    color: #9dc39c;
+
+} */
+.icon a{
+    text-decoration: none;
+    color: #0c0c0c;
+}
+
+.icon:hover i,span{
+    color: #fff;
+}
+.icon:nth-child(1){
+    color: #0c0c0c;
+}
+.git:hover{
+    background: #0e0e0f;
+}
+
+.icon:hover i{
+    color: #9dc39c;
+}
+.icon:nth-child(2){
+    color: #100f0f;
+}
+.insta:hover{
+    background: #d81a63;
+}
+
+.icon:hover i{
+    color: #fff;
+}
+.icon:nth-child(3){
+    color: #191717;
+}
+.yt:hover{
+    background:#d81a1a;
+}
+.icon:nth-child(4){
+    color: #060606;
+}
+.li:hover{
+    background:#6e18a4;
+}
