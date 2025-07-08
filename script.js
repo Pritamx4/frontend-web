@@ -48,43 +48,131 @@ document.addEventListener("DOMContentLoaded", () => {
   setTimeout(type, 1000);
 });
 
+// effective while mouse
+// hovering over the bottom tab
 
+// and hides it after a few seconds of inactivity
+// document.addEventListener("DOMContentLoaded", () => {
+//   const bottomTab = document.getElementById("bottomTab");
+//   const toggleButton = bottomTab.querySelector(".toggle-btn");
+//   const icon = document.getElementById("icon");
+//   let hideTimeout;
 
+//   bottomTab.addEventListener("mouseenter", () => {
+//     clearTimeout(hideTimeout);
+//     icon.classList.remove("fa-angle-up");
+//     icon.classList.add("fa-angle-down");
 
+//     bottomTab.classList.remove("hidden");
+//     bottomTab.classList.add("shown");
+//   });
 
+//   bottomTab.addEventListener("mouseleave", () => {
+//     hideTimeout = setTimeout(() => {
+//       bottomTab.classList.add("hidden");
+//       icon.classList.remove("fa-angle-down");
+//       icon.classList.add("fa-angle-up");
+//       bottomTab.classList.remove("shown");
+//     }, 30);
+//   });
 
+//   hideTimeout = setTimeout(() => {
+//     bottomTab.classList.add("hidden");
+//     bottomTab.classList.remove("shown");
+//     icon.classList.remove("fa-angle-down");
+//     icon.classList.add("fa-angle-up");
+//   }, 3000);
+// });
 
-
-
-
-
-
+// Toggle the bottom tab visibility
 let hideTimeout;
-function toggleBottomTab(){
-  const tab = 
-  document.getElementById("bottomTab");
-  const button = 
-  tab.querySelector(".toggle-btn");
-  const arrowIcon = 
-  document.getElementById("arrowIcon");
-  const isHidden = 
-  tab.classList.contains("hidden");
+function toggleBottomTab() {
+  const tab = document.getElementById("bottomTab");
+  const button = tab.querySelector(".toggle-btn");
+  const icon = document.getElementById("icon");
+  const isHidden = tab.classList.contains("hidden");
 
-  if (isHidden){
+  if (isHidden) {
     tab.classList.remove("hidden");
-    arrowIcon.innerHTML = "^";
+    tab.classList.add("shown");
+    icon.classList.remove("fa-angle-up");
+    icon.classList.add("fa-angle-down");
     button.classList.remove("rotate-icon");
-
-    clearTimeout(hideTimeout);
-    hideTimeout = 
-    setTimeout(() => {
-      tab.classList.add("rotate-icon");
-    },10000);
   } else {
     tab.classList.add("hidden");
-    arrowIcon.innerHTML = 
-    "!";
-
+    tab.classList.remove("shown");
+    icon.classList.remove("fa-angle-down");
+    icon.classList.add("fa-angle-up");
     button.classList.add("rotate-icon");
   }
 }
+
+// bottom tab multipule images&text animation starts
+
+// const card1Images = [
+
+//   {src: "images/robot.png", text: "Card1 text1"},
+//   {src: "images/devilbg.png", text: "Card1 text2"},
+//   {src: "images/devilbg2.png", text: "Card1 text3"},
+//   {src: "images/bgrobot.jpeg", text: "Card1 text4"},
+//   {src: "images/robot.png", text: "Card1 text5"},
+//   {src: "images/robot.png", text: "Card1 text6"},
+// ];
+
+// const card2Images = [
+
+//   {src: "images/robot.png", text: "Card1 text1"},
+//   {src: "images/devilbg.png", text: "Card1 text2"},
+//   {src: "images/devilbg2.png", text: "Card1 text3"},
+//   {src: "images/bgrobot.jpeg", text: "Card1 text4"},
+//   {src: "images/robot.png", text: "Card1 text5"},
+//   {src: "images/robot.png", text: "Card1 text6"},
+// ];
+
+// let index = 0;
+// function
+// animateChanges(cardImgId,cardTextId, newSrc, newText)
+// {
+//    const img =
+//    document.getElementById(cardImgId);
+//    const text =
+//    document.getElementById(cardTextId);
+
+//    img.style.transform = "translateX(-100%)";
+//    setTimeout(() => {
+//     img.src = newSrc;
+//     img.style.transform = "translateX(100%)";
+//     setTimeout(() => {
+//       img.style.transform = "translateX(0)";
+//     }, 50);
+//    }, 300);
+
+//    text.style.transform = "translateY(-100%)";
+//    setTimeout(() => {
+//     text.innerText = newText;
+//     text.style.transform = "translateY(100%)";
+//     setTimeout(() => {
+//       text.style.transform = "translate(0)";
+//     }, 50);
+//    }, 300);
+// }
+
+// function updateCards(){
+//   index = (index + 1)%
+//   card1Images.length;
+
+//   animateChanges("card1-img","card1-text",
+//   card1Images[index].src,
+//   card1Images[index].text);
+
+//   animateChanges("card2-img","card2-text",
+//   card1Images[index].src,
+//   card1Images[index].text);
+
+// }
+
+// updateCards();
+
+// setInterval(updateCards,3000);
+
+// bottom tab multipule images&text animation end
