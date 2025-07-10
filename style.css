@@ -11,21 +11,7 @@ html {
   overflow: auto;
   font-family: 'Courier New', Courier, monospace;
 }
-/* test start*/
-@media (max-width: 768px) {
-  .snap-section { height: auto !important; }
-  html, body { overflow-x: hidden; }
 
-  .cards-container,
-  .project-card img,
-  .contact-image,
-  .right-image {
-    width: 100%;
-    max-width: 100%;
-    object-fit: contain;
-  }
-}
-/* test end*/
 .scroll-container{
   height: 100vh;
   overflow-y: scroll;
@@ -919,3 +905,40 @@ a {
     font-size: 2rem;
   }
 }
+
+/*test start*/
+@media screen and (max-width: 768px) {
+  html, body {
+    overflow-x: hidden;
+  }
+
+  .snap-section {
+    height: auto !important;
+  }
+
+  .project-card img,
+  .contact-image,
+  .right-image {
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
+  }
+
+  .project-section .cards-container {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .hero-section,
+  .about-section,
+  .project-section,
+  .contact-section {
+    padding: 30px 20px;
+    text-align: center;
+  }
+
+  .social-icons {
+    justify-content: center;
+  }
+}
+/*test end*/
