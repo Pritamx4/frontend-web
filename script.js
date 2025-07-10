@@ -48,41 +48,85 @@ document.addEventListener("DOMContentLoaded", () => {
   setTimeout(type, 1000);
 });
 
+
+
+// Toggle the navigation menu on small screens
+// function toggleMenu() {
+//   const navLinks = document.querySelector(".navbar ul");
+//   navLinks.classList.toggle("show");
+// }
+// Toggle the mobile menu
+function toggleMenu() {
+  const navLinks = document.getElementById("navLinks");
+  const icon = document.getElementById("menuToggleIcon");
+
+  navLinks.classList.toggle("show");
+
+  if (navLinks.classList.contains("show")) {
+    icon.classList.remove("fa-bars");
+    icon.classList.add("fa-times");
+  } else {
+    icon.classList.remove("fa-times");
+    icon.classList.add("fa-bars");
+  }
+}
+
+// Auto-close menu when a link is clicked (on mobile)
+document.addEventListener("DOMContentLoaded", () => {
+  const links = document.querySelectorAll("#navLinks a");
+
+  links.forEach(link => {
+    link.addEventListener("click", () => {
+      const navLinks = document.getElementById("navLinks");
+      const icon = document.getElementById("menuToggleIcon");
+
+      if (navLinks.classList.contains("show")) {
+        navLinks.classList.remove("show");
+        icon.classList.remove("fa-times");
+        icon.classList.add("fa-bars");
+      }
+    });
+  });
+});
+
+
+
+
 // effective while mouse
 // hovering over the bottom tab
 
 // and hides it after a few seconds of inactivity
-// document.addEventListener("DOMContentLoaded", () => {
-//   const bottomTab = document.getElementById("bottomTab");
-//   const toggleButton = bottomTab.querySelector(".toggle-btn");
-//   const icon = document.getElementById("icon");
-//   let hideTimeout;
+document.addEventListener("DOMContentLoaded", () => {
+  const bottomTab = document.getElementById("bottomTab");
+  const toggleButton = bottomTab.querySelector(".toggle-btn");
+  const icon = document.getElementById("icon");
+  let hideTimeout;
 
-//   bottomTab.addEventListener("mouseenter", () => {
-//     clearTimeout(hideTimeout);
-//     icon.classList.remove("fa-angle-up");
-//     icon.classList.add("fa-angle-down");
+  bottomTab.addEventListener("mouseenter", () => {
+    clearTimeout(hideTimeout);
+    icon.classList.remove("fa-angle-up");
+    icon.classList.add("fa-angle-down");
 
-//     bottomTab.classList.remove("hidden");
-//     bottomTab.classList.add("shown");
-//   });
+    bottomTab.classList.remove("hidden");
+    bottomTab.classList.add("shown");
+  });
 
-//   bottomTab.addEventListener("mouseleave", () => {
-//     hideTimeout = setTimeout(() => {
-//       bottomTab.classList.add("hidden");
-//       icon.classList.remove("fa-angle-down");
-//       icon.classList.add("fa-angle-up");
-//       bottomTab.classList.remove("shown");
-//     }, 30);
-//   });
+  bottomTab.addEventListener("mouseleave", () => {
+    hideTimeout = setTimeout(() => {
+      bottomTab.classList.add("hidden");
+      icon.classList.remove("fa-angle-down");
+      icon.classList.add("fa-angle-up");
+      bottomTab.classList.remove("shown");
+    }, 30);
+  });
 
-//   hideTimeout = setTimeout(() => {
-//     bottomTab.classList.add("hidden");
-//     bottomTab.classList.remove("shown");
-//     icon.classList.remove("fa-angle-down");
-//     icon.classList.add("fa-angle-up");
-//   }, 3000);
-// });
+  hideTimeout = setTimeout(() => {
+    bottomTab.classList.add("hidden");
+    bottomTab.classList.remove("shown");
+    icon.classList.remove("fa-angle-down");
+    icon.classList.add("fa-angle-up");
+  }, 5000);
+});
 
 // Toggle the bottom tab visibility
 let hideTimeout;
@@ -176,3 +220,5 @@ function toggleBottomTab() {
 // setInterval(updateCards,3000);
 
 // bottom tab multipule images&text animation end
+
+

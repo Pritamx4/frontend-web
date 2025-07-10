@@ -9,6 +9,11 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.cdnfonts.com/css/space-age" rel="stylesheet" />
     <link
+      href="https://fonts.googleapis.com/css2?family=Audiowide&family=Orbitron:wght@400..900&family=Rajdhani:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link
       href="https://fonts.googleapis.com/css2?family=Pacifico&family=Satisfy&display=swap"
       rel="stylesheet"
     />
@@ -24,184 +29,241 @@
   <body>
     <!-- Navbar -->
     <nav class="navbar">
-      <div class="container">
+      <div class="container glow-text">
         <div class="logo">
           <img src="images/px4logo.png" alt="#" class="navbar-logo" />
         </div>
-        <ul>
-          <li><a href="#">Home</a></li>
-          <li><a href="#home">About Effect</a></li>
-          <li><a href="#projects">Projects</a></li>
-          <li><a href="#about">Contact</a></li>
+        
+        <ul id="navLinks" class="nav-links">
+          <li><a href="#section-home">Home</a></li>
+          <li><a href="#section-about">About</a></li>
+          <li><a href="#section-projects">Projects</a></li>
+          <li><a href="#section-contact">Contact</a></li>
         </ul>
+        <div class="menu-icon" onclick="toggleMenu()">
+          <i id="menuToggleIcon" class="fas fa-bars"></i>
+        </div>
       </div>
     </nav>
 
     <!-- Main Section with Background Image -->
-    <section class="hero-section">
-      <div class="content">
-        <img src="images/robot2.png" alt="PNG Image" class="right-image" />
-      </div>
+    <main class="scroll-container" tabindex="0">
+      <section id="section-home" class="snap-section hero-section">
+        <div class="content">
+          <img src="images/robo.png" alt="PNG Image" class="right-image" />
+        </div>
+        <div class="typewriter">
+          <span id="typedText"></span><span class="cursor"></span>
+        </div>
+        <p class="subtitle">Crafting Futuristic Frontend Experiences</p>
+      </section>
 
-      <div class="typewriter">
-        <span id="typedText"></span><span class="cursor"></span>
-      </div>
-    </section>
+      <!-- About Section with 3D Cubes -->
+      <section id="section-about" class="snap-section about-section">
+        <h2 class="about-title">Visual UI Effects</h2>
+        <div class="cube-container">
+          <!-- Glassmorphism Cube -->
+          <div class="cube glass">
+            <div class="face face1">Glassmorphism</div>
+            <div class="face face2">Blurred BG</div>
+            <div class="face face3">Translucent</div>
+            <div class="face face4">Soft Borders</div>
+            <div class="face face5">Frosted Look</div>
+            <div class="face face6">Modern Glow</div>
+          </div>
 
-    <!-- Home Section -->
-    <section id="home" class="home-section">
-      <!-- Left-side image -->
-      <div class="home-left">
-        <img src="images/devilbg.png" alt="Left Image" class="home-image" />
-      </div>
+          <!-- Neumorphism Cube -->
+          <div class="cube neu">
+            <div class="face face1">Neumorphism</div>
+            <div class="face face2">Soft Shadow</div>
+            <div class="face face3">3D Pressed</div>
+            <div class="face face4">Minimalist</div>
+            <div class="face face5">UI Depth</div>
+            <div class="face face6">Soft Light</div>
+          </div>
 
-      <!-- Right-side Glassmorphism description -->
-      <div class="home-right">
-        <div class="speech-container">
-          <!-- Speech bubble -->
-          <div class="speech-bubble">
-            <h2>Glassmorphism Effect</h2>
-            <p>
-              Glassmorphism is a design trend that uses a frosted-glass effect,
-              where elements appear blurred and semi-transparent. It is often
-              paired with vibrant background colors, making the blurred areas
-              stand out, while the transparency gives the feeling of depth.
-            </p>
+          <!-- Gradient UI Cube -->
+          <div class="cube gradient">
+            <div class="face face1">Gradient UI</div>
+            <div class="face face2">Multi-Color</div>
+            <div class="face face3">Dynamic</div>
+            <div class="face face4">Bold</div>
+            <div class="face face5">Energy</div>
+            <div class="face face6">Vibrancy</div>
           </div>
         </div>
-      </div>
-    </section>
-    <!-- home-section -->
+      </section>
 
-    <section id="projects" class="project-section">
-      <div class="project-heading"><h1 class="glow-heading">Projects</h1></div>
-      <div class="cards-container">
-        <div class="project-card">
-          <img src="images/devilbg.png" alt="" />
-          <div class="project-info">
-            <h3>scroll effect</h3>
-            <p>website using HTML CSS JavaScript</p>
-            <div class="links">
-              <a href="" target="_blank">🔗View code</a>
-              <a href="" target="_blank">🌐Live Preview</a>
+      <section id="section-projects" class="snap-section project-section">
+        <div class="project-heading">
+          <h1 class="glow-heading">Projects</h1>
+        </div>
+        <div class="cards-container">
+          <div class="project-card">
+            <img
+              src="images/imgicon6.jpg"
+              alt=""
+              class="project-img placeholder"
+            />
+            <div class="project-info">
+              <h3>scroll effect</h3>
+              <p>website using HTML CSS JavaScript</p>
+              <div class="links">
+                <a href="" target="_blank">
+                  <i class="fa-solid fa-code"></i> View code</a
+                >
+                <a href="" target="_blank">
+                  <i class="fa-solid fa-globe"></i> Live Preview</a
+                >
+              </div>
+            </div>
+          </div>
+          <div class="project-card">
+            <img
+              src="images/imgicon6.jpg"
+              alt=""
+              class="project-img placeholder"
+            />
+            <div class="project-info">
+              <h3>scroll effect</h3>
+              <p>website using HTML CSS JavaScript</p>
+              <div class="links">
+                <a href="" target="_blank">
+                  <i class="fa-solid fa-code"></i> View code</a
+                >
+                <a href="" target="_blank">
+                  <i class="fa-solid fa-globe"></i> Live Preview</a
+                >
+              </div>
+            </div>
+          </div>
+          <div class="project-card">
+            <img
+              src="images/imgicon6.jpg"
+              alt=""
+              class="project-img placeholder"
+            />
+            <div class="project-info">
+              <h3>scroll effect</h3>
+              <p>website using HTML CSS JavaScript</p>
+              <div class="links">
+                <a href="" target="_blank">
+                  <i class="fa-solid fa-code"></i> View code</a
+                >
+                <a href="" target="_blank"
+                  ><i class="fa-solid fa-globe"></i> Live Preview</a
+                >
+              </div>
+            </div>
+          </div>
+          <div class="project-card">
+            <img
+              src="images/imgicon6.jpg"
+              alt=""
+              class="project-img placeholder"
+            />
+            <div class="project-info">
+              <h3>scroll effect</h3>
+              <p>website using HTML CSS JavaScript</p>
+              <div class="links">
+                <a href="" target="_blank">
+                  <i class="fa-solid fa-code"></i> View code</a
+                >
+                <a href="" target="_blank">
+                  <i class="fa-solid fa-globe"></i> Live Preview</a
+                >
+              </div>
+            </div>
+          </div>
+          <div class="project-card">
+            <img
+              src="images/imgicon6.jpg"
+              alt=""
+              class="project-img placeholder"
+            />
+            <div class="project-info">
+              <h3>scroll effect</h3>
+              <p>website using HTML CSS JavaScript</p>
+              <div class="links">
+                <a href="" target="_blank">
+                  <i class="fa-solid fa-code"></i> View code</a
+                >
+                <a href="" target="_blank">
+                  <i class="fa-solid fa-globe"></i> Live Preview</a
+                >
+              </div>
+            </div>
+          </div>
+          <div class="project-card">
+            <img
+              src="images/imgicon6.jpg"
+              alt=""
+              class="project-img placeholder"
+            />
+            <div class="project-info">
+              <h3>scroll effect</h3>
+              <p>website using HTML CSS JavaScript</p>
+              <div class="links">
+                <a href="" target="_blank">
+                  <i class="fa-solid fa-code"></i> View code</a
+                >
+                <a href="" target="_blank">
+                  <i class="fa-solid fa-globe"></i> Live Preview</a
+                >
+              </div>
             </div>
           </div>
         </div>
-        <div class="project-card">
-          <img src="images/devilbg.png" alt="" />
-          <div class="project-info">
-            <h3>scroll effect</h3>
-            <p>website using HTML CSS JavaScript</p>
-            <div class="links">
-              <a href="" target="_blank">🔗View code</a>
-              <a href="" target="_blank">🌐Live Preview</a>
-            </div>
-          </div>
-        </div>
-        <div class="project-card">
-          <img src="images/devilbg.png" alt="" />
-          <div class="project-info">
-            <h3>scroll effect</h3>
-            <p>website using HTML CSS JavaScript</p>
-            <div class="links">
-              <a href="" target="_blank">🔗View code</a>
-              <a href="" target="_blank">🌐Live Preview</a>
-            </div>
-          </div>
-        </div>
-        <div class="project-card">
-          <img src="images/devilbg.png" alt="" />
-          <div class="project-info">
-            <h3>scroll effect</h3>
-            <p>website using HTML CSS JavaScript</p>
-            <div class="links">
-              <a href="" target="_blank">🔗View code</a>
-              <a href="" target="_blank">🌐Live Preview</a>
-            </div>
-          </div>
-        </div>
-        <div class="project-card">
-          <img src="images/devilbg.png" alt="" />
-          <div class="project-info">
-            <h3>scroll effect</h3>
-            <p>website using HTML CSS JavaScript</p>
-            <div class="links">
-              <a href="" target="_blank">🔗View code</a>
-              <a href="" target="_blank">🌐Live Preview</a>
-            </div>
-          </div>
-        </div>
-        <div class="project-card">
-          <img src="images/devilbg.png" alt="" />
-          <div class="project-info">
-            <h3>scroll effect</h3>
-            <p>website using HTML CSS JavaScript</p>
-            <div class="links">
-              <a href="" target="_blank">🔗View code</a>
-              <a href="" target="_blank">🌐Live Preview</a>
-            </div>
-          </div>
-        </div>
-      </div>
 
-      <!-- <div id="project-overlay" class="overlay-hidden">
+        <!-- <div id="project-overlay" class="overlay-hidden">
         <span class="close-btn">&times;</span>
         <iframe id="project-frame" src="" frameborder="0"></iframe>
       </div> -->
-    </section>
+      </section>
 
-    <!-- about-section -->
-    <section id="about" class="about-section">
-      <!-- Left-side PNG image -->
-      <div class="about-left">
-        <div class="speech-container-about">
-          <!-- Speech bubble -->
-          <div class="speech-bubble-about">
+      <section id="section-contact" class="snap-section contact-section">
+        <div class="contact-left">
+          <div class="speech-bubble-contact">
             <h2>Contact Us:</h2>
             <p>
-              "Feel free to contact me anytime! You can also find me on social
-              media by clicking the links below." You can also download the code
-              from my Github account(Pritamx4)
+              Get in touch for collaborations or queries. Let's build something
+              amazing together!
             </p>
           </div>
-          <!-- <div class="main"> -->
-          <div class="icon git">
-            <a href="https://github.com/Pritamx4" target="_blank"
+          <div class="social-icons">
+            <a
+              href="https://github.com/Pritamx4"
+              target="_blank"
+              class="icon git"
               ><i href="https://github.com/Pritamx4" class="fab fa-github"></i
-              ><span>Github</span></a
-            >
-          </div>
-
-          <div class="icon insta">
-            <a href="https://www.instagram.com/smile._.only__/"
-              ><i class="fab fa-instagram"></i><span>Instagram</span></a
-            >
-          </div>
-
-          <div class="icon yt">
-            <a href="https://www.youtube.com/channel/UCD7DeRJrlkQmyPDWlICZ8wQ"
-              ><i class="fab fa-youtube"></i><span>YouTube</span></a
-            >
-          </div>
-
-          <div class="icon li">
+            ></a>
+            <a
+              href="https://www.instagram.com/smile._.only__/"
+              class="icon insta"
+              ><i class="fab fa-instagram"></i
+            ></a>
+            <a
+              href="https://www.youtube.com/@Pritamx4-Studio?sub_confirmation=1"
+              class="icon yt"
+              ><i class="fab fa-youtube"></i
+            ></a>
             <a
               href="https://www.linkedin.com/in/pritam-singh-ab3943296?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
-              ><i class="fab fa-linkedin"></i><span>Linkedin</span></a
-            >
+              class="icon li"
+              ><i class="fab fa-linkedin"></i
+            ></a>
           </div>
-          <!-- </div> -->
         </div>
-      </div>
 
-      <div class="about-right">
-        <img src="images/robot.png" alt="Left Image" class="about-image" />
-      </div>
-    </section>
-    <!-- Right-side Glassmorphism description -->
-
-    <!-- about-section -->
-    <!-- mine -->
+        <div class="contact-right">
+          <img
+            src="images/contact.png"
+            alt="Left Image"
+            class="contact-image"
+          />
+        </div>
+      </section>
+    </main>
 
     <div class="bottom hidden shown" id="bottomTab">
       <button class="toggle-btn" onclick="toggleBottomTab()">
