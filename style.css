@@ -11,6 +11,21 @@ html {
   overflow: auto;
   font-family: 'Courier New', Courier, monospace;
 }
+/* test start*/
+@media (max-width: 768px) {
+  .snap-section { height: auto !important; }
+  html, body { overflow-x: hidden; }
+
+  .cards-container,
+  .project-card img,
+  .contact-image,
+  .right-image {
+    width: 100%;
+    max-width: 100%;
+    object-fit: contain;
+  }
+}
+/* test end*/
 .scroll-container{
   height: 100vh;
   overflow-y: scroll;
