@@ -918,7 +918,6 @@ a {
 }
 
 
-/* test start*/
 @media screen and (max-width: 768px) {
   html, body {
     overflow-x: hidden;
@@ -953,4 +952,3 @@ a {
     justify-content: center;
   }
 }
-/*test end */
