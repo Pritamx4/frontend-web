@@ -2,11 +2,6 @@
 
 <div align="center">
 
-![License](https://img.shields.io/github/license/Pritamx4/frontend-web?style=for-the-badge&color=00fff7)
-![Stars](https://img.shields.io/github/stars/Pritamx4/frontend-web?style=for-the-badge&color=ff4ddb)
-![Forks](https://img.shields.io/github/forks/Pritamx4/frontend-web?style=for-the-badge&color=00fff7)
-![Issues](https://img.shields.io/github/issues/Pritamx4/frontend-web?style=for-the-badge&color=ff4ddb)
-
 **✨ Crafting Futuristic Frontend Experiences ✨**
 
 *A cutting-edge portfolio showcasing modern web development with stunning visual effects and animations*
