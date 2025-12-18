@@ -48,8 +48,6 @@ document.addEventListener("DOMContentLoaded", () => {
   setTimeout(type, 1000);
 });
 
-
-
 // Toggle the navigation menu on small screens
 // function toggleMenu() {
 //   const navLinks = document.querySelector(".navbar ul");
@@ -75,7 +73,7 @@ function toggleMenu() {
 document.addEventListener("DOMContentLoaded", () => {
   const links = document.querySelectorAll("#navLinks a");
 
-  links.forEach(link => {
+  links.forEach((link) => {
     link.addEventListener("click", () => {
       const navLinks = document.getElementById("navLinks");
       const icon = document.getElementById("menuToggleIcon");
@@ -88,9 +86,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 });
-
-
-
 
 // effective while mouse
 // hovering over the bottom tab
@@ -220,5 +215,3 @@ function toggleBottomTab() {
 // setInterval(updateCards,3000);
 
 // bottom tab multipule images&text animation end
-
-
