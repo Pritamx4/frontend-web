@@ -352,10 +352,8 @@ html {
 
 /* bottom multiple images part ends */
 
-
-
-@media screen and (max-width:768px) {
-  #bottomTab{
+@media screen and (max-width: 768px) {
+  #bottomTab {
     display: none;
   }
 }
@@ -711,7 +709,24 @@ a {
 }
 
 ::-webkit-scrollbar {
-  width: 6px;
+  width: 3px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.18);
+  border-radius: 20px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.35);
+}
+
+/* ::-webkit-scrollbar {
+  width: 3px;
   height: 8px;
 }
 
@@ -726,7 +741,7 @@ a {
 
 ::-webkit-scrollbar-thumb:hover {
   background-color: #666666;
-}
+} */
 
 /* ============Project section=================== */
 
@@ -791,18 +806,21 @@ a {
   gap: 50px;
 }
 .cards-container::-webkit-scrollbar {
- display: none;
+  display: none;
 }
 .project-card {
   width: 400px;
   height: 270px;
-  background-color:  rgba(255, 255, 255, 0.05);
+  background-color: rgba(255, 255, 255, 0.05);
   border-radius: 10px;
   backdrop-filter: blur(12px);
   cursor: pointer;
-  transition: transform 0.3s ;
+  transition: transform 0.3s;
   overflow: hidden;
-  clip-path: path("M 0,0 L 120,0 L 170,40 L 390,40 A 10,10 0,0,1 400,50 L 400,270 L 0,270 Z");
+  /* clip-path: path(
+    "M 0,0 L 110,0 Q 120,0 128,8 L 162,32 Q 170,40 180,40 L 390,40 Q 400,40 400,50 L 400,270 L 0,270 Z"
+  ); */
+  clip-path:url(#folderClip);
 }
 .project-card img {
   width: 400px;
@@ -817,7 +835,7 @@ a {
   width: 400px;
   height: 100px;
   padding: 15px;
-  background-color:rgba(0, 0, 0, 0.7) ;
+  background-color: rgba(0, 0, 0, 0.7);
   color: #e0f7fa;
 }
 .card-info h3 {
@@ -859,12 +877,9 @@ a {
 .links a:hover i {
   color: #00f0ff;
   transform: scale(1.2);
-  filter: drop-shadow(0,0,5px #00ffff);
-  text-shadow: 0 0 10px #00f0ff,
-               0 0 20px #00f0ff,
-               0 0 30px #00f0ff;
+  filter: drop-shadow(0, 0, 5px #00ffff);
+  text-shadow: 0 0 10px #00f0ff, 0 0 20px #00f0ff, 0 0 30px #00f0ff;
 }
-
 
 @media screen and (max-width: 768px) {
   .cards-container {
@@ -873,7 +888,7 @@ a {
     padding: 20px;
   }
   .project-card {
-    width: 90%;
+    width: 95%;
     height: auto;
     margin-left: 10px;
   }
@@ -881,27 +896,25 @@ a {
     width: 100%;
     height: auto;
   }
-  .links a{
+  .links a {
     font-size: 14px;
   }
   .card-info {
     width: 100%;
     padding-top: 2px;
   }
-    
+
   .project-heading h1 {
     font-size: 40px;
     letter-spacing: 4px;
   }
 }
 
-
-
-
-
 @media screen and (max-width: 768px) {
-  html, body {
+  html,
+  body {
     overflow-x: hidden;
+    overflow-y: hidden;
   }
 
   .snap-section {
