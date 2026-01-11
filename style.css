@@ -36,7 +36,7 @@ html {
   width: 100%;
   background: transparent;
   color: #00fff7;
-  padding: 10px 20px;
+  padding: 0.625rem 1.25rem;
   top: 0;
   left: 0;
   z-index: 1000;
@@ -59,14 +59,14 @@ html {
 }
 
 .nav-links li {
-  margin-left: 20px;
+  margin-left: 1.25rem;
 }
 
 .nav-links li a {
   color: #00f0ff;
   font-family: "Orbitron", sans-serif;
   text-transform: uppercase;
-  letter-spacing: 1px;
+  letter-spacing: 0.0625rem;
   font-weight: 100;
   text-decoration: none;
 }
@@ -85,20 +85,20 @@ html {
 .menu-icon {
   display: none; /* Hidden on desktop */
   cursor: pointer;
-  font-size: 28px;
+  font-size: 1.75rem;
   color: #00f0ff;
 }
 @media (max-width: 768px) {
   .nav-links {
     display: none; /* Hide links initially */
     position: absolute;
-    top: 60px;
-    right: 20px;
+    top: 3.75rem;
+    right: 1.25rem;
     background: rgba(0, 0, 0, 0.85);
     flex-direction: column;
-    width: 180px;
-    padding: 15px 10px;
-    border-radius: 10px;
+    width: 11.25rem;
+    padding: 0.9375rem 0.625rem;
+    border-radius: 0.625rem;
     z-index: 999;
   }
 
@@ -107,7 +107,7 @@ html {
   }
 
   .nav-links li {
-    margin: 12px 0;
+    margin: 0.75rem 0;
   }
 
   .menu-icon {
@@ -123,36 +123,36 @@ html {
   background-position: center;
   height: 100vh;
   position: relative;
-  padding-top: 60px; /* Offset for navbar height */
+  padding-top: 3.75rem; /* Offset for navbar height */
   color: white;
   text-align: center;
   overflow: hidden;
 }
 
 .hero-section .content {
-  padding: 20px;
+  padding: 1.25rem;
   position: relative;
   z-index: 0;
 }
 
 .right-image {
   position: relative;
-  right: -350px;
-  top: -90px;
+  right: -21.875rem;
+  top: -5.625rem;
   z-index: 0;
   width: 50%;
 }
 
 .typewriter {
   position: absolute;
-  top: 110px;
-  left: 40px;
+  top: 6.875rem;
+  left: 2.5rem;
   /* height: 70px; */
   /* width: 650px; */
   /* width: 60px; */
   /* from with center texting effect triggers or without text start from left */
-  padding: 15px 25px;
-  font-size: 25px;
+  padding: 0.9375rem 1.5625rem;
+  font-size: clamp(1.125rem, 3vw, 1.5625rem);
   font-weight: 500;
   font-family: "space age";
   color: #00fff7;
@@ -192,7 +192,7 @@ html {
 /* Hero Section Mobile Responsive */
 @media (max-width: 768px) {
   .hero-section {
-    padding-top: 80px; /* navbar space */
+    padding-top: 5rem; /* navbar space */
     background-position: center center;
   }
 
@@ -204,12 +204,12 @@ html {
     position: static;
     top: auto;
     left: auto;
-    padding: 10px 20px;
-    font-size: 18px;
+    padding: 0.625rem 1.25rem;
+    font-size: 1.125rem;
     text-align: center;
     width: 100%;
     /* width: 100px; */
-    height: 100px;
+    height: 6.25rem;
     animation: none;
   }
 
@@ -220,8 +220,8 @@ html {
     font-family: "Orbitron", sans-serif;
     font-size: 1rem;
     text-align: center;
-    margin-top: 12px;
-    padding: 0 15px;
+    margin-top: 0.75rem;
+    padding: 0 0.9375rem;
   }
 }
 
@@ -233,14 +233,14 @@ html {
   position: fixed;
   bottom: 0;
   height: 30vh;
-  left: 70px;
+  left: 4.375rem;
   width: 90%;
   backdrop-filter: blur(10px);
   background: rgba(20, 20, 20, 0.75);
   box-shadow: 0 -2px 20px rgba(0, 0, 0, 0.3);
   z-index: 1000;
-  border-radius: 30px 30px 0 0;
-  padding: 20px;
+  border-radius: 1.875rem 1.875rem 0 0;
+  padding: 1.25rem;
   /* background-image: linear-gradient(
     120deg,
     rgba(255, 255, 255, 0.3),
@@ -251,22 +251,23 @@ html {
 
 .toggle-btn {
   position: absolute;
-  top: -37.5px;
+  top: -2.5rem;
   left: 50%;
   transform: translateX(-50%);
-  font-size: 24px;
-  padding: 5px 30px;
-  background: rgba(30, 30, 30, 0.85);
+  font-size: 1.5rem;
+  padding: 0.5rem 2.1875rem;
+  background: rgba(20, 20, 20, 0.75);
+  backdrop-filter: blur(10px);
   border: none;
-  border-radius: 20% 20% 0 0;
+  border-radius: 0.9375rem 0.9375rem 0 0;
   cursor: pointer;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 -2px 20px rgba(0, 0, 0, 0.3);
   z-index: 1001;
   transition: background 0.3s ease, box-shadow 0.3s ease;
 }
 .toggle-btn:hover {
-  background: rgba(50, 50, 50, 0.9);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6);
+  background: rgba(30, 30, 30, 0.85);
+  box-shadow: 0 -4px 25px rgba(0, 0, 0, 0.5);
 }
 
 .bottom.hidden {
@@ -304,7 +305,7 @@ html {
   /* padding: 10px; */
   width: 95.5%;
   height: 96%;
-  top: 8px;
+  top: 0.5rem;
 }
 
 .card {
@@ -316,9 +317,9 @@ html {
   backdrop-filter: blur(15px);
   box-shadow: 0 4px 20px rgba(0, 255, 247, 0.08);
   border: 1px solid rgba(255, 255, 255, 0.08); */
-  border-radius: 12px;
-  margin: 12px px;
-  padding: 16px;
+  border-radius: 0.75rem;
+  margin: 0.75rem px;
+  padding: 1rem;
   width: 45%;
   height: 110%;
   text-align: center;
@@ -327,8 +328,8 @@ html {
 .card img {
   width: 50%;
   height: 95%;
-  border-radius: 8px;
-  margin-right: 8px;
+  border-radius: 0.5rem;
+  margin-right: 0.5rem;
 }
 
 /* bottom multiple images part starts */
@@ -365,7 +366,7 @@ html {
   align-items: center;
   height: 100vh;
   background: #000;
-  padding-top: 60px;
+  padding-top: 3.75rem;
   scroll-snap-align: start;
 }
 
@@ -373,13 +374,13 @@ html {
 .about-title {
   color: #00fff7;
   font-family: "Orbitron", sans-serif;
-  font-size: 2.2rem;
+  font-size: clamp(1.6rem, 4vw, 2.2rem);
   text-align: center;
   text-transform: uppercase;
-  letter-spacing: 4px;
+  letter-spacing: 0.25rem;
   text-shadow: 0 0 10px #00fff7;
   /* margin-bottom: 40px; */
-  margin-bottom: 200px;
+  margin-bottom: 12.5rem;
 }
 
 /* ========== Cube Layout ========== */
@@ -387,14 +388,14 @@ html {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 200px; /* Wider gap between cubes */
+  gap: 12.5rem; /* Wider gap between cubes */
   flex-wrap: wrap;
 }
 
 /* ========== Cube Base Styles ========== */
 .cube {
-  width: 150px;
-  height: 150px;
+  width: 9.375rem;
+  height: 9.375rem;
   position: relative;
   transform-style: preserve-3d;
   animation: rotate 12s infinite linear;
@@ -407,37 +408,37 @@ html {
 
 .face {
   position: absolute;
-  width: 150px;
-  height: 150px;
+  width: 9.375rem;
+  height: 9.375rem;
   display: flex;
   align-items: center;
   justify-content: center;
   font-family: "Courier New", Courier, monospace;
-  font-size: 14px;
+  font-size: 0.875rem;
   text-align: center;
-  padding: 10px;
+  padding: 0.625rem;
   box-sizing: border-box;
-  border-radius: 10px;
+  border-radius: 0.625rem;
 }
 
 /* ========== Cube Face Positions ========== */
 .face1 {
-  transform: rotateY(0deg) translateZ(75px);
+  transform: rotateY(0deg) translateZ(4.6875rem);
 }
 .face2 {
-  transform: rotateY(90deg) translateZ(75px);
+  transform: rotateY(90deg) translateZ(4.6875rem);
 }
 .face3 {
-  transform: rotateY(180deg) translateZ(75px);
+  transform: rotateY(180deg) translateZ(4.6875rem);
 }
 .face4 {
-  transform: rotateY(-90deg) translateZ(75px);
+  transform: rotateY(-90deg) translateZ(4.6875rem);
 }
 .face5 {
-  transform: rotateX(90deg) translateZ(75px);
+  transform: rotateX(90deg) translateZ(4.6875rem);
 }
 .face6 {
-  transform: rotateX(-90deg) translateZ(75px);
+  transform: rotateX(-90deg) translateZ(4.6875rem);
 }
 
 /* ========== Cube Animation ========== */
@@ -479,23 +480,23 @@ html {
   .cube-container {
     flex-direction: column;
     /* gap: 30px; */ /* smaller size for stacked layout */
-    gap: 90px;
+    gap: 5.625rem;
   }
 
   .cube {
-    width: 120px;
-    height: 120px;
+    width: 7.5rem;
+    height: 7.5rem;
   }
 
   .face {
-    width: 120px;
-    height: 120px;
-    font-size: 12px;
+    width: 7.5rem;
+    height: 7.5rem;
+    font-size: 0.75rem;
   }
 
   .about-title {
     font-size: 1.6rem;
-    margin-bottom: 50px; /* original*/
+    margin-bottom: 3.125rem; /* original*/
     /* margin-bottom: 100px; */
   }
 }
@@ -557,7 +558,7 @@ span {
   align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
-  padding: 60px 40px;
+  padding: 3.75rem 2.5rem;
   gap: 2rem;
   position: relative;
   background: #000;
@@ -578,12 +579,12 @@ span {
   justify-content: center;
   align-items: center;
   z-index: 1;
-  margin-top: 55px;
+  margin-top: 3.4375rem;
 }
 
 .contact-image {
   width: 100%;
-  max-width: 308px;
+  max-width: 19.25rem;
   height: auto;
   object-fit: contain;
 }
@@ -591,21 +592,21 @@ span {
 .speech-bubble-contact {
   background-color: rgba(255, 255, 255, 0.05);
   backdrop-filter: blur(10px);
-  border-radius: 20px;
-  padding: 20px 30px;
-  max-width: 350px;
+  border-radius: 1.25rem;
+  padding: 1.25rem 1.875rem;
+  max-width: 21.875rem;
   width: 100%;
   color: #e5f7f8;
   box-shadow: 0 0 15px rgba(0, 255, 247, 0.08);
   position: relative;
-  margin-bottom: 20px;
+  margin-bottom: 1.25rem;
 }
 
 .speech-bubble-contact::after {
   content: "";
   position: absolute;
-  right: -20px;
-  top: 30px;
+  right: -1.25rem;
+  top: 1.875rem;
   border-width: 10px;
   border-style: solid;
   border-color: transparent transparent transparent rgba(255, 255, 255, 0.05);
@@ -616,8 +617,8 @@ span {
 .speech-bubble-contact h2 {
   font-family: orbitron;
   text-transform: uppercase;
-  font-size: 1.8rem;
-  margin-bottom: 10px;
+  font-size: clamp(1.5rem, 3vw, 1.8rem);
+  margin-bottom: 0.625rem;
 }
 
 .speech-bubble-contact p {
@@ -629,16 +630,16 @@ span {
 
 .social-icons {
   display: flex;
-  gap: 30px;
+  gap: 1.875rem;
   flex-wrap: wrap;
   justify-content: center;
-  margin-top: 10px;
-  margin-left: 5px;
+  margin-top: 0.625rem;
+  margin-left: 0.3125rem;
 }
 
 .icon {
-  width: 60px;
-  height: 60px;
+  width: 3.75rem;
+  height: 3.75rem;
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.03);
   backdrop-filter: blur(8px);
@@ -665,7 +666,7 @@ a {
 
   .contact-left {
     width: 100%;
-    margin-bottom: 30px;
+    margin-bottom: 1.875rem;
   }
   .contact-right {
     width: 100%;
@@ -673,10 +674,10 @@ a {
   }
 
   .speech-bubble-contact {
-    padding: 20px;
+    padding: 1.25rem;
     margin: 0 auto;
     width: 90%;
-    max-width: 500px;
+    max-width: 31.25rem;
   }
 
   .speech-bubble-contact::after {
@@ -694,16 +695,16 @@ a {
   .social-icons {
     justify-content: center;
     flex-wrap: wrap;
-    gap: 24px;
-    margin-top: 20px;
+    gap: 1.5rem;
+    margin-top: 1.25rem;
   }
 
   .contact-image {
     width: 100%;
-    max-width: 400px;
+    max-width: 25rem;
     height: auto;
     display: block;
-    transform: translateY(30px);
+    transform: translateY(1.875rem);
     /* margin: 0 auto; */
   }
 }
@@ -725,28 +726,11 @@ a {
   background: rgba(255, 255, 255, 0.35);
 }
 
-/* ::-webkit-scrollbar {
-  width: 3px;
-  height: 8px;
-}
-
-::-webkit-scrollbar-track {
-  background: #1a1a1a;
-  border-radius: 10px;
-}
-
-::-webkit-scrollbar-thumb {
-  background-color: #444444;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background-color: #666666;
-} */
 
 /* ============Project section=================== */
 
 .project-section {
-  padding: 60px 10px;
+  padding: 3.75rem 0.625rem;
   background: #0f0f0f;
   color: #fff;
   font-family: "Segoe UI", sans-serif;
@@ -757,16 +741,16 @@ a {
 .project-heading {
   display: flex;
   width: 100%;
-  height: 80px;
+  height: 5rem;
   justify-content: center;
   align-items: center;
 }
 
 .project-heading h1 {
-  font-size: 70px;
+  font-size: clamp(2.5rem, 6vw, 4.375rem);
   font-family: orbitron;
   font-weight: 700;
-  letter-spacing: 8px;
+  letter-spacing: 0.5rem;
 }
 .glow-heading {
   font-size: clamp(2rem, 5vw, 3.5rem);
@@ -794,7 +778,7 @@ a {
 }
 .cards-container {
   width: 100%;
-  height: calc(100dvh - 80px);
+  height: calc(100dvh - 5rem);
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
@@ -802,17 +786,17 @@ a {
   overflow-y: hidden;
   overflow-x: auto;
   align-items: center;
-  padding: 30px;
-  gap: 50px;
+  padding: 1.875rem;
+  gap: 3.125rem;
 }
 .cards-container::-webkit-scrollbar {
   display: none;
 }
 .project-card {
-  width: 400px;
-  height: 270px;
+  width: 25rem;
+  height: 16.875rem;
   background-color: rgba(255, 255, 255, 0.05);
-  border-radius: 10px;
+  border-radius: 0.625rem;
   backdrop-filter: blur(12px);
   cursor: pointer;
   transition: transform 0.3s;
@@ -823,54 +807,54 @@ a {
   clip-path: url(#folderClip);
 }
 .project-card img {
-  width: 400px;
-  height: 170px;
+  width: 25rem;
+  height: 10.625rem;
   object-fit: cover;
 }
 .project-card:hover {
-  transform: translateY(-10px);
+  transform: translateY(-0.625rem);
 }
 
 .card-info {
-  width: 400px;
-  height: 100px;
-  padding: 15px;
+  width: 25rem;
+  height: 6.25rem;
+  padding: 0.9375rem;
   background-color: rgba(0, 0, 0, 0.7);
   color: #e0f7fa;
 }
 .card-info h3 {
-  font-size: 20px;
+  font-size: 1.25rem;
   font-weight: 500;
-  margin-bottom: 5px;
+  margin-bottom: 0.3125rem;
   font-family: orbitron;
   color: #ccc;
 }
 .card-info p {
-  font-size: 14px;
+  font-size: 0.875rem;
   font-weight: 400;
   color: #ccc;
   font-family: "Courier New", Courier, monospace;
 }
 .links {
   width: 100%;
-  height: 30px;
+  height: 1.875rem;
   display: flex;
   color: #00f0ff;
   justify-content: space-between;
   align-items: center;
   transition: all 0.3s ease;
-  padding: 5px;
+  padding: 0.3125rem;
   font-family: "Courier New", Courier, monospace;
 }
 .links a {
   text-decoration: none;
-  font-size: 16px;
+  font-size: 1rem;
   font-weight: 500;
   color: #ff4ddb;
 }
 .links i {
-  margin-right: 5px;
-  margin-top: 5px;
+  margin-right: 0.3125rem;
+  margin-top: 0.3125rem;
   color: #00ffff;
   transition: all 0.3s ease;
 }
@@ -885,28 +869,28 @@ a {
   .cards-container {
     flex-direction: column;
     align-items: center;
-    padding: 20px;
+    padding: 1.25rem;
   }
   .project-card {
     width: 95%;
     height: auto;
-    margin-left: 10px;
+    margin-left: 0.625rem;
   }
   .project-card img {
     width: 100%;
     height: auto;
   }
   .links a {
-    font-size: 14px;
+    font-size: 0.875rem;
   }
   .card-info {
     width: 100%;
-    padding-top: 2px;
+    padding-top: 0.125rem;
   }
 
   .project-heading h1 {
-    font-size: 40px;
-    letter-spacing: 4px;
+    font-size: clamp(2rem, 5vw, 2.5rem);
+    letter-spacing: 0.25rem;
   }
 }
 
@@ -941,7 +925,7 @@ a {
   .about-section,
   .project-section,
   .contact-section {
-    padding: 30px 20px;
+    padding: 1.875rem 1.25rem;
     text-align: center;
   }
 
