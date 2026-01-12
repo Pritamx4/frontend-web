@@ -78,9 +78,8 @@ html {
 }
 
 .navbar-logo {
-  border-radius: 50%;
-  width: 10%;
-  height: 10%;
+  width: 50px;
+  height: auto;
 }
 
 .menu-icon {
