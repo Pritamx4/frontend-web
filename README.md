@@ -84,16 +84,15 @@
 ## 📸 Screenshots & Demo
 
 ### 🏠 Hero Section
-> *Coming Soon - Animated typewriter effect with futuristic robot character*
+> Done✅
 
 ### 🎭 Interactive 3D Cubes
-> *Coming Soon - Glassmorphism and neon-themed rotating cubes*
-
+> Done✅
 ### 💼 Project Showcase
-> *Coming Soon - Card-based project gallery with hover effects*
+> Done✅
 
 ### 📞 Contact Section
-> *Coming Soon - Social media integration with animated icons*
+> Done✅
 
 ---
 
