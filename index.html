@@ -125,7 +125,7 @@
         </div>
         <div class="cards-container">
           <div class="project-card">
-            <img src="images/scrolltrigger.png" />
+            <img src="images/scrolltrigger.png" alt=""/>
             <div class="card-info">
               <h3>Scroll Trigger</h3>
               <p>A scroll-triggered animation using GSAP.</p>
@@ -141,7 +141,7 @@
             </div>
           </div>
           <div class="project-card">
-            <img src="images/todolist.png" />
+            <img src="images/todolist.png" alt=""/>
             <div class="card-info">
               <h3>To-Do List</h3>
               <p>A to-do list application built with Next.js</p>
@@ -157,7 +157,7 @@
             </div>
           </div>
           <div class="project-card">
-            <img src="images/tictactoe.png" />
+            <img src="images/tictactoe.png" alt=""/>
             <div class="card-info">
               <h3>Tic Tac Toe</h3>
               <p>by using HTML, CSS and JS.</p>
@@ -173,7 +173,7 @@
             </div>
           </div>
           <div class="project-card">
-            <img src="images/memorymanagementsimulator.png" />
+            <img src="images/memorymanagementsimulator.png" alt="" />
             <div class="card-info">
               <h3>Memory Management simulator</h3>
               <p>by using HTML CSS JS.</p>
@@ -199,61 +199,6 @@
               </div>
             </div>
           </div>
-          <!--<div class="project-card">
-            <img src="images/imgicon6.jpg" />
-            <div class="card-info">
-              <h3>project name</h3>
-              <p>Lorem ipsum dolor sit amet consectetur.</p>
-              <div class="links">
-                <a href=""><i class="fa-solid fa-code"></i>Get Code</a>
-                <a href=""><i class="fa-solid fa-eye"></i>Live Review</a>
-              </div>
-            </div>
-          </div>
-          <!--<div class="project-card">
-            <img src="images/imgicon6.jpg" />
-            <div class="card-info">
-              <h3>project name</h3>
-              <p>Lorem ipsum dolor sit amet consectetur.</p>
-              <div class="links">
-                <a href=""><i class="fa-solid fa-code"></i>Get Code</a>
-                <a href=""><i class="fa-solid fa-eye"></i>Live Review</a>
-              </div>
-            </div>
-          </div>
-          <div class="project-card">
-            <img src="images/imgicon6.jpg" />
-            <div class="card-info">
-              <h3>project name</h3>
-              <p>Lorem ipsum dolor sit amet consectetur.</p>
-              <div class="links">
-                <a href=""><i class="fa-solid fa-code"></i>Get Code</a>
-                <a href=""><i class="fa-solid fa-eye"></i>Live Review</a>
-              </div>
-            </div>
-          </div>
-          <div class="project-card">
-            <img src="images/imgicon6.jpg" />
-            <div class="card-info">
-              <h3>project name</h3>
-              <p>Lorem ipsum dolor sit amet consectetur.</p>
-              <div class="links">
-                <a href=""><i class="fa-solid fa-code"></i>Get Code</a>
-                <a href=""><i class="fa-solid fa-eye"></i>Live Review</a>
-              </div>
-            </div>
-          </div>
-          <div class="project-card">
-            <img src="images/imgicon6.jpg" />
-            <div class="card-info">
-              <h3>project name</h3>
-              <p>Lorem ipsum dolor sit amet consectetur.</p>
-              <div class="links">
-                <a href=""><i class="fa-solid fa-code"></i>Get Code</a>
-                <a href=""><i class="fa-solid fa-eye"></i>Live Review</a>
-              </div>
-            </div>
-          </div> -->
         </div>
       </section>
 
@@ -298,32 +243,34 @@
     </main>
 
     <div class="bottom hidden shown" id="bottomTab">
-      <button class="toggle-btn" onclick="toggleBottomTab()">
+    <button class="toggle-btn" onclick="toggleBottomTab()">
         <i id="icon" class="fa fa-angle-down"></i>
-      </button>
-      <div class="bottom-content">
-        <div class="card card1">
-          <!-- <div class="image-container">
-          </div> -->
+    </button>
 
-          <img id="card1-img" src="images/bgrobo.jpg" alt="" />
-          <p id="card1-text">Its really looks cool SUBSCRIBE!</p>
-
-          <!-- <div text-container>
-          </div> -->
+    <div class="terminal-wrapper">
+        <div class="terminal-left">
+            <div id="terminal-text"></div>
         </div>
-        <div class="card card2">
-          <!-- <div class="image-container">
-          </div> -->
 
-          <img id="card2-img" src="images/bgrobo.jpg" alt="" />
-          <p id="card2-text">Its really looks cool SUBSCRIBE!</p>
-
-          <!-- <div text-container>
-            </div> -->
+        <div class="terminal-right" id="stats-container" style="opacity: 0;">
+            <div class="stat-row">
+                <span>HTML</span>
+                <div class="progress-bg"><div class="progress-bar" style="width: 55%"></div></div>
+                <span class="percent">55%</span>
+            </div>
+            <div class="stat-row">
+                <span>CSS</span>
+                <div class="progress-bg"><div class="progress-bar" style="width: 35%"></div></div>
+                <span class="percent">35%</span>
+            </div>
+            <div class="stat-row">
+                <span>JavaScript</span>
+                <div class="progress-bg"><div class="progress-bar" style="width: 10%"></div></div>
+                <span class="percent">10%</span>
+            </div>
         </div>
-      </div>
     </div>
+</div>
 
     <script src="script.js"></script>
   </body>

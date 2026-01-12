@@ -7,6 +7,7 @@
 
 body,
 html {
+  user-select: none;
   height: 100%;
   overflow: auto;
   font-family: "Courier New", Courier, monospace;
@@ -147,23 +148,11 @@ html {
   position: absolute;
   top: 6.875rem;
   left: 2.5rem;
-  /* height: 70px; */
-  /* width: 650px; */
-  /* width: 60px; */
-  /* from with center texting effect triggers or without text start from left */
   padding: 0.9375rem 1.5625rem;
   font-size: clamp(1.125rem, 3vw, 1.5625rem);
   font-weight: 500;
   font-family: "space age";
   color: #00fff7;
-
-  /* border-radius: 12px;
-  backdrop-filter: blur(3px);
-  background: rgba(255, 255, 255, 0.1);
-  background: transparent;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
-  border: 5px solid rgba(0, 0, 0, 0.2); */
-
   animation: fadeIn 1.5s ease forwards;
 }
 .cursor {
@@ -208,7 +197,6 @@ html {
     font-size: 1.125rem;
     text-align: center;
     width: 100%;
-    /* width: 100px; */
     height: 6.25rem;
     animation: none;
   }
@@ -241,12 +229,6 @@ html {
   z-index: 1000;
   border-radius: 1.875rem 1.875rem 0 0;
   padding: 1.25rem;
-  /* background-image: linear-gradient(
-    120deg,
-    rgba(255, 255, 255, 0.3),
-    rgba(0, 0, 0, 0.2)
-  ); */
-  /* background-size: 30px 30px; */
 }
 
 .toggle-btn {
@@ -299,59 +281,12 @@ html {
 .bottom-content {
   display: flex;
   position: absolute;
-  /* border: 1px solid black; */
   align-items: center;
   justify-content: space-evenly;
-  /* padding: 10px; */
   width: 95.5%;
   height: 96%;
   top: 0.5rem;
 }
-
-.card {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: transparent;
-  /* background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(15px);
-  box-shadow: 0 4px 20px rgba(0, 255, 247, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.08); */
-  border-radius: 0.75rem;
-  margin: 0.75rem px;
-  padding: 1rem;
-  width: 45%;
-  height: 110%;
-  text-align: center;
-  color: white;
-}
-.card img {
-  width: 50%;
-  height: 95%;
-  border-radius: 0.5rem;
-  margin-right: 0.5rem;
-}
-
-/* bottom multiple images part starts */
-
-/* .image-container img{
-  width: 50%;
-  border-radius: 10px;
-  transition: transform 0.5s ease-in-out;
-}
-
-.text-container{
-  margin-top: 12px;
-  height: 40px;
-  overflow: hidden;
-  position: relative;
-}
-.text-container p{
-  transition: transform 0.5s ease-in-out;
-  margin: 0;
-} */
-
-/* bottom multiple images part ends */
 
 @media screen and (max-width: 768px) {
   #bottomTab {
@@ -379,7 +314,6 @@ html {
   text-transform: uppercase;
   letter-spacing: 0.25rem;
   text-shadow: 0 0 10px #00fff7;
-  /* margin-bottom: 40px; */
   margin-bottom: 12.5rem;
 }
 
@@ -479,7 +413,6 @@ html {
 @media screen and (max-width: 768px) {
   .cube-container {
     flex-direction: column;
-    /* gap: 30px; */ /* smaller size for stacked layout */
     gap: 5.625rem;
   }
 
@@ -496,8 +429,7 @@ html {
 
   .about-title {
     font-size: 1.6rem;
-    margin-bottom: 3.125rem; /* original*/
-    /* margin-bottom: 100px; */
+    margin-bottom: 3.125rem;
   }
 }
 
@@ -517,7 +449,6 @@ span {
   color: #fff;
 }
 .icon:nth-child(1) {
-  /* color: #0c0c0c; */
   color: white;
 }
 .git:hover {
@@ -528,7 +459,6 @@ span {
   color: #9dc39c;
 }
 .icon:nth-child(2) {
-  /* color: #100f0f; */
   color: white;
 }
 .insta:hover {
@@ -539,14 +469,12 @@ span {
   color: #fff;
 }
 .icon:nth-child(3) {
-  /* color: #191717; */
   color: white;
 }
 .yt:hover {
   background: #d81a1a;
 }
 .icon:nth-child(4) {
-  /* color: #060606; */
   color: white;
 }
 .li:hover {
@@ -568,7 +496,6 @@ span {
   flex: 1 1 100%;
   display: flex;
   flex-direction: column;
-  /* align-items: flex-start; */
   align-items: center;
   z-index: 2;
 }
@@ -661,7 +588,6 @@ a {
     display: block;
     align-items: center;
     text-align: center;
-    /* padding: 40px 20px; */
   }
 
   .contact-left {
@@ -670,7 +596,6 @@ a {
   }
   .contact-right {
     width: 100%;
-    /* margin-top: 190px; */
   }
 
   .speech-bubble-contact {
@@ -705,7 +630,6 @@ a {
     height: auto;
     display: block;
     transform: translateY(1.875rem);
-    /* margin: 0 auto; */
   }
 }
 
@@ -735,7 +659,6 @@ a {
   color: #fff;
   font-family: "Segoe UI", sans-serif;
   min-height: 100vh;
-  /* overflow: hidden; */
 }
 
 .project-heading {
@@ -756,7 +679,6 @@ a {
   font-size: clamp(2rem, 5vw, 3.5rem);
   font-weight: bold;
   letter-spacing: 2px;
-  /* text-align: center; */
   background: linear-gradient(90deg, #00f0ff, #7a00ff, #ff00c8);
   background-size: 300% 300%;
   background-clip: text;
@@ -801,9 +723,6 @@ a {
   cursor: pointer;
   transition: transform 0.3s;
   overflow: hidden;
-  /* clip-path: path(
-    "M 0,0 L 110,0 Q 120,0 128,8 L 162,32 Q 170,40 180,40 L 390,40 Q 400,40 400,50 L 400,270 L 0,270 Z"
-  ); */
   clip-path: url(#folderClip);
 }
 .project-card img {
@@ -932,4 +851,76 @@ a {
   .social-icons {
     justify-content: center;
   }
+}
+
+/* Terminal Wrapper for Bottom Tab */
+.terminal-wrapper {
+    display: flex;
+    padding: 25px;
+    gap: 30px;
+    align-items: center; /* Vertical alignment */
+}
+
+.terminal-left {
+    flex: 1;
+    white-space: nowrap;
+    color: #00ffcc;
+    font-size: 13px;
+    line-height: 1.8;
+}
+
+.terminal-right {
+    flex: 1.5; /* Bars ko thoda bada rakha hai */
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.stat-row {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.stat-row span:first-child {
+    width: 90px;
+    color: #00ffcc;
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+/* 🧪 Progress Bar - New Design */
+.progress-bg {
+    flex-grow: 1; /* Ye gap ko fill karega */
+    height: 14px;
+    background: rgba(0, 255, 204, 0.05); /* Very subtle background */
+    border: 1px solid rgba(0, 255, 204, 0.4); /* Neon border */
+    margin: 0 15px;
+    position: relative;
+    box-shadow: inset 0 0 5px rgba(0, 255, 204, 0.2);
+}
+
+.progress-bar {
+    height: 100%;
+    width: 0%; /* JS will update this */
+    background: #00ffcc;
+    box-shadow: 0 0 15px #00ffcc, 0 0 5px #fff; /* Dual glow */
+    transition: width 2s cubic-bezier(0.4, 0, 0.2, 1);
+    
+    /* Segmented look */
+    background-image: linear-gradient(
+        90deg, 
+        rgba(0,0,0,0.3) 2px, 
+        transparent 2px
+    );
+    background-size: 10px 100%;
+}
+
+.percent {
+    width: 40px;
+    color: #00ffcc;
+    font-weight: bold;
+    font-family: 'Courier New', monospace;
+    text-shadow: 0 0 5px #00ffcc;
 }

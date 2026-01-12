@@ -14,7 +14,6 @@ const texts = [
   "Next-gen UI Loding...",
   "Access Granted: Frontend Mode",
   "Digital Architect in Progress",
-  // windows + . for emoji
 ];
 
 let textIndex = 0;
@@ -48,11 +47,6 @@ document.addEventListener("DOMContentLoaded", () => {
   setTimeout(type, 1000);
 });
 
-// Toggle the navigation menu on small screens
-// function toggleMenu() {
-//   const navLinks = document.querySelector(".navbar ul");
-//   navLinks.classList.toggle("show");
-// }
 // Toggle the mobile menu
 function toggleMenu() {
   const navLinks = document.getElementById("navLinks");
@@ -87,10 +81,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-// effective while mouse
-// hovering over the bottom tab
-
-// and hides it after a few seconds of inactivity
+// Auto-show bottom tab on hover and hide after inactivity
 document.addEventListener("DOMContentLoaded", () => {
   const bottomTab = document.getElementById("bottomTab");
   const toggleButton = bottomTab.querySelector(".toggle-btn");
@@ -146,72 +137,83 @@ function toggleBottomTab() {
   }
 }
 
-// bottom tab multipule images&text animation starts
+// Terminal typing effect and GitHub repo stats
+const terminalElement = document.getElementById('terminal-text');
+const statsContainer = document.getElementById('stats-container');
+const progressBars = document.querySelectorAll('.progress-bar');
+const percentTexts = document.querySelectorAll('.percent');
 
-// const card1Images = [
+const messages = [
+    "> ACCESSING REPO: frontend-web",
+    "> ANALYZING SOURCE CODE...",
+    "> CALCULATING REPO STATISTICS...",
+    "> DEPLOYING SKILL METRICS... [COMPLETE]"
+];
 
-//   {src: "images/robot.png", text: "Card1 text1"},
-//   {src: "images/devilbg.png", text: "Card1 text2"},
-//   {src: "images/devilbg2.png", text: "Card1 text3"},
-//   {src: "images/bgrobot.jpeg", text: "Card1 text4"},
-//   {src: "images/robot.png", text: "Card1 text5"},
-//   {src: "images/robot.png", text: "Card1 text6"},
-// ];
+let msgIndex = 0;
+let charPos = 0; // Renamed as requested
+let repoData = [55, 35, 10]; // Default values (fallback)
 
-// const card2Images = [
+async function fetchGitHubStats() {
+    try {
+        const response = await fetch('https://api.github.com/repos/Pritamx4/frontend-web/languages');
+        
+        // Check if response is okay
+        if (!response.ok) throw new Error("API Limit Reached");
 
-//   {src: "images/robot.png", text: "Card1 text1"},
-//   {src: "images/devilbg.png", text: "Card1 text2"},
-//   {src: "images/devilbg2.png", text: "Card1 text3"},
-//   {src: "images/bgrobot.jpeg", text: "Card1 text4"},
-//   {src: "images/robot.png", text: "Card1 text5"},
-//   {src: "images/robot.png", text: "Card1 text6"},
-// ];
+        const data = await response.json();
+        const totalBytes = Object.values(data).reduce((a, b) => a + b, 0);
+        
+        // Agar repo empty nahi hai tabhi calculate karein
+        if (totalBytes > 0) {
+            repoData = [
+                Math.round(((data.HTML || 0) / totalBytes) * 100),
+                Math.round(((data.CSS || 0) / totalBytes) * 100),
+                Math.round(((data.JavaScript || 0) / totalBytes) * 100)
+            ];
+        }
+    } catch (error) {
+        console.warn("Using fallback data due to:", error.message);
+    }
+}
 
-// let index = 0;
-// function
-// animateChanges(cardImgId,cardTextId, newSrc, newText)
-// {
-//    const img =
-//    document.getElementById(cardImgId);
-//    const text =
-//    document.getElementById(cardTextId);
+function typeEffect() {
+    if (msgIndex < messages.length) {
+        if (charPos < messages[msgIndex].length) {
+            terminalElement.innerHTML += messages[msgIndex].charAt(charPos);
+            charPos++; 
+            setTimeout(typeEffect, 30);
+        } else {
+            terminalElement.innerHTML += "<br>";
+            msgIndex++;
+            charPos = 0;
+            setTimeout(typeEffect, 400);
+        }
+    } else {
+        showStats();
+    }
+}
 
-//    img.style.transform = "translateX(-100%)";
-//    setTimeout(() => {
-//     img.src = newSrc;
-//     img.style.transform = "translateX(100%)";
-//     setTimeout(() => {
-//       img.style.transform = "translateX(0)";
-//     }, 50);
-//    }, 300);
+function showStats() {
+    statsContainer.style.opacity = "1";
+    statsContainer.style.transition = "opacity 1s ease";
+    
+    setTimeout(() => {
+        progressBars.forEach((bar, index) => {
+            const val = repoData[index];
+            
+            // NaN check safety
+            const safeVal = isNaN(val) ? 0 : val;
 
-//    text.style.transform = "translateY(-100%)";
-//    setTimeout(() => {
-//     text.innerText = newText;
-//     text.style.transform = "translateY(100%)";
-//     setTimeout(() => {
-//       text.style.transform = "translate(0)";
-//     }, 50);
-//    }, 300);
-// }
+            bar.style.width = safeVal + "%";
+            if(percentTexts[index]) {
+                percentTexts[index].innerText = safeVal + "%";
+            }
+        });
+    }, 500);
+}
 
-// function updateCards(){
-//   index = (index + 1)%
-//   card1Images.length;
-
-//   animateChanges("card1-img","card1-text",
-//   card1Images[index].src,
-//   card1Images[index].text);
-
-//   animateChanges("card2-img","card2-text",
-//   card1Images[index].src,
-//   card1Images[index].text);
-
-// }
-
-// updateCards();
-
-// setInterval(updateCards,3000);
-
-// bottom tab multipule images&text animation end
+window.onload = () => {
+    fetchGitHubStats(); 
+    typeEffect();       
+};
