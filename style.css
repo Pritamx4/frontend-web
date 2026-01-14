@@ -398,10 +398,10 @@ a {
 
 .about-title {
   color: var(--color-primary);
-  font-family: "Orbitron", sans-serif;
+  font-family: 'Warnes', sans-serif;
   font-size: clamp(1.6rem, 4vw, 2.2rem);
   text-align: center;
-  text-transform: uppercase;
+  text-transform: capitalize;
   letter-spacing: 0.25rem;
   text-shadow: 0 0 10px var(--color-primary);
   margin-bottom: 12.5rem;
@@ -544,9 +544,10 @@ a {
 
 .project-heading h1 {
   font-size: clamp(var(--font-2xl), 6vw, var(--font-4xl));
-  font-family: orbitron;
+  font-family: 'Manufacturing Consent', sans-serif;
   font-weight: 700;
-  letter-spacing: 0.5rem;
+  letter-spacing: 0.2rem;
+  text-transform: capitalize;
 }
 
 .glow-heading {
@@ -1158,8 +1159,9 @@ span {
   font-size: clamp(var(--font-2xl), 6vw, var(--font-4xl));
   margin-bottom: var(--spacing-xl);
   text-align: center;
-  font-family: 'Bruno Ace', cursive;
-  letter-spacing: 0.3rem;
+  font-family: 'Manufacturing Consent', sans-serif;
+  letter-spacing: 0.2rem;
+  text-transform: capitalize;
 }
 
 .skills-grid {
