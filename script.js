@@ -81,6 +81,54 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
+// ========================================
+// 5. CONTACT SECTION - Message Functionality
+// ========================================
+const sendIcon = document.querySelector('.send-icon');
+const messageInput = document.querySelector('.message-input');
+
+let isInputVisible = false;
+
+sendIcon.addEventListener('click', (e) => {
+  e.stopPropagation();
+  
+  if (!isInputVisible) {
+    // Show input field
+    messageInput.classList.remove('hide');
+    messageInput.classList.add('show');
+    isInputVisible = true;
+    messageInput.focus();
+  } else {
+    // Send message
+    const message = messageInput.value.trim();
+    if (message) {
+      // Add sending animation
+      sendIcon.classList.add('sending');
+      
+      // Simulate sending
+      setTimeout(() => {
+        alert(`Message sent: ${message}`);
+        
+        // Reset
+        messageInput.value = '';
+        messageInput.classList.remove('show');
+        messageInput.classList.add('hide');
+        sendIcon.classList.remove('sending');
+        isInputVisible = false;
+      }, 500);
+    }
+  }
+});
+
+// Close input if clicking outside
+document.addEventListener('click', (e) => {
+  if (!e.target.closest('.message-container') && isInputVisible) {
+    messageInput.classList.remove('show');
+    messageInput.classList.add('hide');
+    isInputVisible = false;
+  }
+});
+
 // Auto-show bottom tab on hover and hide after inactivity
 document.addEventListener("DOMContentLoaded", () => {
   const bottomTab = document.getElementById("bottomTab");

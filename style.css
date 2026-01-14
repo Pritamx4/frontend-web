@@ -554,6 +554,89 @@ span {
   font-size: 1rem;
 }
 
+/* Message Container Styles */
+.message-container {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  position: relative;
+  margin-left: 8px;
+}
+
+.message-input {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid #00fff7;
+  color: #fff;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 0.9rem;
+  padding: 2px 8px;
+  outline: none;
+  width: 150px;
+  transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.message-input.hide {
+  width: 0;
+  opacity: 0;
+  transform: translateX(-20px);
+  pointer-events: none;
+}
+
+.message-input.show {
+  width: 150px;
+  opacity: 1;
+  transform: translateX(0);
+  pointer-events: all;
+}
+
+.message-input::placeholder {
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 0.85rem;
+}
+
+.send-icon {
+  font-size: 1.2rem;
+  color: #00fff7;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  display: inline-block;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+    filter: drop-shadow(0 0 3px #00fff7);
+  }
+  50% {
+    transform: scale(1.08);
+    filter: drop-shadow(0 0 8px #00fff7) drop-shadow(0 0 12px #ff4ddb);
+  }
+}
+
+.send-icon:hover {
+  transform: scale(1.12) rotate(10deg);
+  color: #ff4ddb;
+  filter: drop-shadow(0 0 12px #ff4ddb);
+}
+
+.send-icon.sending {
+  animation: send 0.5s ease-out forwards;
+}
+
+@keyframes send {
+  0% {
+    transform: translateX(0) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(50px) rotate(45deg) scale(0.5);
+    opacity: 0;
+  }
+}
+
 .social-icons {
   display: flex;
   gap: 1.875rem;
