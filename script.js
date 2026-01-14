@@ -325,3 +325,114 @@ window.onload = () => {
   fetchGitHubStats();
   typeEffect();
 };
+// ========================================
+// THEME TOGGLE
+// ========================================
+const themeToggle = document.getElementById('themeToggle');
+const themeIcon = themeToggle.querySelector('i');
+
+// Check for saved theme preference or default to dark mode
+const currentTheme = localStorage.getItem('theme') || 'dark';
+if (currentTheme === 'light') {
+  document.body.classList.add('light-mode');
+  themeIcon.classList.remove('fa-moon');
+  themeIcon.classList.add('fa-sun');
+}
+
+themeToggle.addEventListener('click', () => {
+  document.body.classList.toggle('light-mode');
+  
+  // Update icon
+  if (document.body.classList.contains('light-mode')) {
+    themeIcon.classList.remove('fa-moon');
+    themeIcon.classList.add('fa-sun');
+    localStorage.setItem('theme', 'light');
+    showToast('Light mode activated! ☀️', 'success');
+  } else {
+    themeIcon.classList.remove('fa-sun');
+    themeIcon.classList.add('fa-moon');
+    localStorage.setItem('theme', 'dark');
+    showToast('Dark mode activated! 🌙', 'success');
+  }
+});
+
+// ========================================
+// BACK TO TOP BUTTON
+// ========================================
+const backToTopBtn = document.getElementById('backToTop');
+
+// Show/hide button on scroll
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 500) {
+    backToTopBtn.classList.add('show');
+  } else {
+    backToTopBtn.classList.remove('show');
+  }
+});
+
+// Scroll to top on click
+backToTopBtn.addEventListener('click', () => {
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth'
+  });
+});
+
+// ========================================
+// SKILLS ANIMATION
+// ========================================
+const skillCards = document.querySelectorAll('.skill-card');
+const skillProgressBars = document.querySelectorAll('.skill-progress');
+
+// Intersection Observer for skills section
+const observerOptions = {
+  threshold: 0.3,
+  rootMargin: '0px'
+};
+
+const skillsObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      // Animate cards
+      entry.target.classList.add('animate-in');
+      
+      // Animate progress bars
+      const progressBar = entry.target.querySelector('.skill-progress');
+      if (progressBar) {
+        const targetWidth = progressBar.getAttribute('data-progress');
+        setTimeout(() => {
+          progressBar.style.width = targetWidth + '%';
+        }, 200);
+      }
+    }
+  });
+}, observerOptions);
+
+// Observe all skill cards
+skillCards.forEach(card => {
+  skillsObserver.observe(card);
+});
+
+// ========================================
+// SCROLL ANIMATIONS (General)
+// ========================================
+const animateOnScroll = document.querySelectorAll('.project-card, .cube');
+
+const scrollObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.style.opacity = '1';
+      entry.target.style.transform = 'translateY(0)';
+    }
+  });
+}, {
+  threshold: 0.2,
+  rootMargin: '0px'
+});
+
+animateOnScroll.forEach(element => {
+  element.style.opacity = '0';
+  element.style.transform = 'translateY(30px)';
+  element.style.transition = 'all 0.6s ease-out';
+  scrollObserver.observe(element);
+});

@@ -731,6 +731,35 @@ a {
   text-shadow: var(--shadow-glow);
 }
 
+/* Tech Stack Badges */
+.tech-stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-xs);
+  margin: var(--spacing-md) 0;
+}
+
+.tech-badge {
+  padding: var(--spacing-xs) var(--spacing-sm);
+  background: linear-gradient(135deg, rgba(0, 255, 204, 0.1), rgba(255, 0, 110, 0.1));
+  border: 1px solid rgba(0, 255, 204, 0.3);
+  border-radius: var(--radius-md);
+  font-size: var(--font-xs);
+  color: var(--color-neon-cyan);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  transition: all var(--transition-fast);
+}
+
+.tech-badge:hover {
+  background: linear-gradient(135deg, rgba(0, 255, 204, 0.2), rgba(255, 0, 110, 0.2));
+  border-color: var(--color-neon-pink);
+  color: var(--color-neon-pink);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(255, 0, 110, 0.3);
+}
+
 /* Projects Section Responsive */
 @media screen and (max-width: 768px) {
   .cards-container {
@@ -1194,6 +1223,213 @@ span {
   font-weight: bold;
   font-family: "Courier New", monospace;
   text-shadow: 0 0 5px var(--color-neon-cyan);
+}
+
+/* Bottom Tab Responsive */
+@media screen and (max-width: 768px) {
+  #bottomTab {
+    display: none;
+  }
+}
+
+/* ========================================
+   7. SKILLS SECTION
+======================================== */
+.skills-section {
+  padding: var(--spacing-3xl) var(--spacing-xl);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.skills-section .section-title {
+  font-size: var(--font-3xl);
+  margin-bottom: var(--spacing-3xl);
+  text-align: center;
+}
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: var(--spacing-2xl);
+  width: 100%;
+  max-width: 1200px;
+}
+
+.skill-card {
+  background: rgba(20, 20, 20, 0.6);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(0, 255, 204, 0.2);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-2xl);
+  text-align: center;
+  transition: all var(--transition-base);
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.skill-card.animate-in {
+  animation: slideInUp var(--duration-base) forwards;
+}
+
+@keyframes slideInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.skill-card:hover {
+  transform: translateY(-10px);
+  border-color: var(--color-neon-cyan);
+  box-shadow: 0 10px 40px rgba(0, 255, 204, 0.3);
+}
+
+.skill-icon {
+  font-size: 4rem;
+  color: var(--color-neon-cyan);
+  margin-bottom: var(--spacing-md);
+  transition: all var(--transition-base);
+}
+
+.skill-card:hover .skill-icon {
+  transform: scale(1.1);
+  filter: drop-shadow(0 0 20px var(--color-neon-cyan));
+}
+
+.skill-card h3 {
+  font-size: var(--font-xl);
+  color: var(--color-text-primary);
+  margin-bottom: var(--spacing-lg);
+}
+
+.skill-bar {
+  width: 100%;
+  height: 12px;
+  background: rgba(0, 255, 204, 0.1);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+  margin-bottom: var(--spacing-sm);
+  border: 1px solid rgba(0, 255, 204, 0.3);
+}
+
+.skill-progress {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--color-neon-cyan), var(--color-neon-pink));
+  box-shadow: 0 0 15px var(--color-neon-cyan);
+  transition: width 2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.skill-percentage {
+  font-size: var(--font-sm);
+  color: var(--color-neon-cyan);
+  font-weight: bold;
+  text-shadow: 0 0 5px var(--color-neon-cyan);
+}
+
+/* ========================================
+   8. THEME TOGGLE BUTTON
+======================================== */
+.theme-toggle {
+  position: fixed;
+  top: 100px;
+  right: var(--spacing-2xl);
+  width: 50px;
+  height: 50px;
+  border-radius: var(--radius-full);
+  background: rgba(20, 20, 20, 0.8);
+  backdrop-filter: blur(10px);
+  border: 2px solid var(--color-neon-cyan);
+  color: var(--color-neon-cyan);
+  font-size: var(--font-xl);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition-base);
+  z-index: var(--z-modal);
+  box-shadow: 0 0 20px rgba(0, 255, 204, 0.3);
+}
+
+.theme-toggle:hover {
+  transform: scale(1.1) rotate(15deg);
+  box-shadow: 0 0 30px rgba(0, 255, 204, 0.6);
+}
+
+.theme-toggle i {
+  transition: transform var(--transition-base);
+}
+
+/* Light Mode Styles */
+body.light-mode {
+  --color-bg-primary: #f5f5f5;
+  --color-bg-secondary: #ffffff;
+  --color-text-primary: #1a1a1a;
+  --color-text-secondary: #4a4a4a;
+  --color-neon-cyan: #00b4d8;
+  --color-neon-pink: #ff006e;
+  --color-neon-purple: #7209b7;
+}
+
+body.light-mode .navbar,
+body.light-mode .bottom,
+body.light-mode .toggle-btn,
+body.light-mode .project-card,
+body.light-mode .skill-card,
+body.light-mode .theme-toggle,
+body.light-mode .back-to-top {
+  background: rgba(255, 255, 255, 0.9);
+  border-color: rgba(0, 180, 216, 0.3);
+}
+
+body.light-mode .glow-heading {
+  text-shadow: 0 0 10px rgba(0, 180, 216, 0.5);
+}
+
+/* ========================================
+   9. BACK TO TOP BUTTON
+======================================== */
+.back-to-top {
+  position: fixed;
+  bottom: var(--spacing-2xl);
+  right: var(--spacing-2xl);
+  width: 50px;
+  height: 50px;
+  border-radius: var(--radius-full);
+  background: rgba(20, 20, 20, 0.8);
+  backdrop-filter: blur(10px);
+  border: 2px solid var(--color-neon-pink);
+  color: var(--color-neon-pink);
+  font-size: var(--font-xl);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition-base);
+  z-index: var(--z-modal);
+  box-shadow: 0 0 20px rgba(255, 0, 110, 0.3);
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(0);
+}
+
+.back-to-top.show {
+  opacity: 1;
+  visibility: visible;
+  transform: scale(1);
+}
+
+.back-to-top:hover {
+  transform: scale(1.1) translateY(-5px);
+  box-shadow: 0 0 30px rgba(255, 0, 110, 0.6);
+}
+
+/* Smooth Scroll Behavior */
+html {
+  scroll-behavior: smooth;
 }
 
 /* Bottom Tab Responsive */
