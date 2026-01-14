@@ -1,4 +1,35 @@
 // ========================================
+// 0. PAGE LOADER & INITIALIZATION
+// ========================================
+
+// Initialize EmailJS with your public key
+(function() {
+  emailjs.init("YOUR_PUBLIC_KEY"); // Replace with your EmailJS public key
+})();
+
+// Page loader
+window.addEventListener('load', () => {
+  const loader = document.getElementById('pageLoader');
+  setTimeout(() => {
+    loader.classList.add('hidden');
+  }, 800);
+});
+
+// Toast Notification Function
+function showToast(message, type = 'success') {
+  const toast = document.getElementById('toast');
+  const toastMessage = toast.querySelector('.toast-message');
+  
+  toastMessage.textContent = message;
+  toast.className = `toast ${type}`;
+  toast.classList.add('show');
+  
+  setTimeout(() => {
+    toast.classList.remove('show');
+  }, 4000);
+}
+
+// ========================================
 // 1. NAVBAR FUNCTIONALITY
 // ========================================
 
@@ -115,17 +146,31 @@ sendIcon.addEventListener('click', (e) => {
       // Add sending animation
       sendIcon.classList.add('sending');
       
-      // Simulate sending
-      setTimeout(() => {
-        alert(`Message sent: ${message}`);
-        
-        // Reset
-        messageInput.value = '';
-        messageInput.classList.remove('show');
-        messageInput.classList.add('hide');
-        sendIcon.classList.remove('sending');
-        isInputVisible = false;
-      }, 500);
+      // Send email using EmailJS
+      const templateParams = {
+        message: message,
+        from_name: 'Portfolio Visitor',
+        to_name: 'Pritam Singh'
+      };
+      
+      emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', templateParams)
+        .then((response) => {
+          console.log('SUCCESS!', response.status, response.text);
+          showToast('Message sent successfully! I\'ll get back to you soon.', 'success');
+          
+          // Reset
+          messageInput.value = '';
+          messageInput.classList.remove('show');
+          messageInput.classList.add('hide');
+          sendIcon.classList.remove('sending');
+          isInputVisible = false;
+        }, (error) => {
+          console.error('FAILED...', error);
+          showToast('Failed to send message. Please try again.', 'error');
+          sendIcon.classList.remove('sending');
+        });
+    } else {
+      showToast('Please enter a message first!', 'error');
     }
   }
 });

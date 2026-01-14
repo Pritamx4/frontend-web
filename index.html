@@ -3,7 +3,23 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>PRITAMx4</title>
+    <meta name="description" content="Portfolio of Pritam Singh - Web Developer specializing in HTML, CSS, JavaScript. Creating futuristic, interactive web experiences." />
+    <meta name="keywords" content="Pritam Singh, PritamX4, Web Developer, Portfolio, HTML, CSS, JavaScript, Frontend Developer" />
+    <meta name="author" content="Pritam Singh" />
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="PRITAMx4 - Web Developer Portfolio" />
+    <meta property="og:description" content="Futuristic portfolio showcasing web development projects and skills" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://pritamx4.github.io/frontend-web/" />
+    <meta property="og:image" content="https://pritamx4.github.io/frontend-web/images/px4%20main%20logo.svg" />
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="PRITAMx4 - Web Developer Portfolio" />
+    <meta name="twitter:description" content="Futuristic portfolio showcasing web development projects" />
+    
+    <title>PRITAMx4 - Web Developer Portfolio</title>
     <link rel="icon" href="images main logoctor.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -24,24 +40,40 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
+    <!-- EmailJS Library -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
   </head>
   <body>
+    <!-- Toast Notification -->
+    <div id="toast" class="toast" role="alert" aria-live="polite">
+      <i class="toast-icon"></i>
+      <span class="toast-message"></span>
+    </div>
+    
+    <!-- Page Loader -->
+    <div id="pageLoader" class="page-loader">
+      <div class="loader-content">
+        <div class="loader-spinner"></div>
+        <p class="loader-text">Loading...</p>
+      </div>
+    </div>
+
     <!-- Navbar -->
-    <nav class="navbar">
+    <nav class="navbar" role="navigation" aria-label="Main navigation">
       <div class="container glow-text">
         <div class="logo">
-          <img src="images/px4 main logo.svg" alt="#" class="navbar-logo" />
+          <img src="images/px4 main logo.svg" alt="PritamX4 Logo" class="navbar-logo" />
         </div>
 
-        <ul id="navLinks" class="nav-links">
-          <li><a href="#section-home">Home</a></li>
-          <li><a href="#section-about">UI Effects</a></li>
-          <li><a href="#section-projects">Projects</a></li>
-          <li><a href="#section-contact">Contact</a></li>
+        <ul id="navLinks" class="nav-links" role="list">
+          <li><a href="#section-home" aria-label="Navigate to home section">Home</a></li>
+          <li><a href="#section-about" aria-label="Navigate to UI effects section">UI Effects</a></li>
+          <li><a href="#section-projects" aria-label="Navigate to projects section">Projects</a></li>
+          <li><a href="#section-contact" aria-label="Navigate to contact section">Contact</a></li>
         </ul>
 
-        <div class="menu-icon" onclick="toggleMenu()">
-          <i id="menuToggleIcon" class="fas fa-bars"></i>
+        <div class="menu-icon" onclick="toggleMenu()" role="button" aria-label="Toggle mobile menu" tabindex="0">
+          <i id="menuToggleIcon" class="fas fa-bars" aria-hidden="true"></i>
         </div>
       </div>
     </nav>

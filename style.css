@@ -78,6 +78,8 @@ html {
   --z-navbar: 1000;
   --z-modal: 1001;
   --z-tooltip: 999;
+  --z-toast: 10000;
+  --z-loader: 9999;
   
   /* Icon Sizes */
   --icon-sm: 3rem;         /* 48px */
@@ -96,7 +98,130 @@ html {
   --duration-rotate: 12s;
 }
 
-.scroll-container {
+/* ========================================
+   TOAST NOTIFICATIONS
+======================================== */
+.toast {
+  position: fixed;
+  top: var(--spacing-xl);
+  right: var(--spacing-xl);
+  min-width: 300px;
+  padding: var(--spacing-lg) var(--spacing-xl);
+  background: rgba(15, 15, 15, 0.95);
+  backdrop-filter: blur(10px);
+  border-radius: var(--radius-md);
+  box-shadow: 0 8px 32px rgba(0, 255, 247, 0.3);
+  border: 1px solid var(--color-primary);
+  color: var(--color-text-primary);
+  font-family: "Courier New", Courier, monospace;
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  opacity: 0;
+  transform: translateX(400px);
+  transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  z-index: var(--z-toast);
+  pointer-events: none;
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translateX(0);
+  pointer-events: all;
+}
+
+.toast-icon {
+  font-size: 1.5rem;
+  flex-shrink: 0;
+}
+
+.toast.success {
+  border-color: #39ff14;
+}
+
+.toast.success .toast-icon::before {
+  content: "✓";
+  color: #39ff14;
+}
+
+.toast.error {
+  border-color: #ff4444;
+}
+
+.toast.error .toast-icon::before {
+  content: "✕";
+  color: #ff4444;
+}
+
+.toast-message {
+  flex: 1;
+  font-size: var(--font-sm);
+}
+
+/* ========================================
+   PAGE LOADER
+======================================== */
+.page-loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: var(--color-background);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: var(--z-loader);
+  transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+.page-loader.hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.loader-content {
+  text-align: center;
+}
+
+.loader-spinner {
+  width: 60px;
+  height: 60px;
+  border: 3px solid rgba(0, 255, 247, 0.1);
+  border-top-color: var(--color-primary);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 0 auto var(--spacing-md);
+  box-shadow: 0 0 20px rgba(0, 255, 247, 0.3);
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.loader-text {
+  color: var(--color-primary);
+  font-family: "Orbitron", sans-serif;
+  font-size: var(--font-lg);
+  text-transform: uppercase;
+  letter-spacing: 0.2rem;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+/* Focus Indicators for Accessibility */
+a:focus,
+button:focus,
+input:focus,
+[tabindex]:focus {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+/* ========================================
+   BASIC STYLES CONTINUE
+======================================== */.scroll-container {
   height: 100vh;
   overflow-y: scroll;
   scroll-snap-type: y mandatory;
