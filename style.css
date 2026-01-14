@@ -158,15 +158,6 @@ html {
   font-size: var(--font-sm);
 }
 
-/* Focus Indicators for Accessibility */
-a:focus,
-button:focus,
-input:focus,
-[tabindex]:focus {
-  outline: 2px solid var(--color-primary);
-  outline-offset: 2px;
-}
-
 /* ========================================
    BASIC STYLES CONTINUE
 ======================================== */.scroll-container {
