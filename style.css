@@ -115,20 +115,12 @@ html {
 }
 
 ::-webkit-scrollbar {
-  width: 3px;
+  display: none;
 }
 
-::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.18);
-  border-radius: var(--radius-lg);
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.35);
+body {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
 a {
@@ -723,6 +715,87 @@ a {
   font-family: "Courier New", Courier, monospace;
   line-height: 1.6;
   font-size: var(--font-base);
+}
+
+/* Message Container Styles */
+.message-container {
+  display: inline-flex;
+  align-items: center;
+  position: relative;
+}
+
+.message-input {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--color-primary);
+  color: var(--color-text-primary);
+  font-family: "Courier New", Courier, monospace;
+  font-size: 0.9rem;
+  padding: 2px 3px;
+  outline: none;
+  width: 150px;
+  transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.message-input.hide {
+  width: 0;
+  opacity: 0;
+  transform: translateX(-20px);
+  pointer-events: none;
+}
+
+.message-input.show {
+  width: 100px;
+  opacity: 1;
+  transform: translateX(0);
+  pointer-events: all;
+}
+
+.message-input::placeholder {
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 0.85rem;
+}
+
+.send-icon {
+  font-size: 1.2rem;
+  color: var(--color-primary);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  display: inline-block;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+    filter: drop-shadow(0 0 3px var(--color-primary));
+  }
+  50% {
+    transform: scale(1.08);
+    filter: drop-shadow(0 0 8px var(--color-primary)) drop-shadow(0 0 12px var(--color-secondary));
+  }
+}
+
+.send-icon:hover {
+  transform: scale(1.12) rotate(10deg);
+  color: var(--color-secondary);
+  filter: drop-shadow(0 0 12px var(--color-secondary));
+}
+
+.send-icon.sending {
+  animation: send 0.5s ease-out forwards;
+}
+
+@keyframes send {
+  0% {
+    transform: translateX(0) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(50px) rotate(45deg) scale(0.5);
+    opacity: 0;
+  }
 }
 
 .social-icons {
