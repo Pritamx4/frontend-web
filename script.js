@@ -413,26 +413,3 @@ skillCards.forEach(card => {
   skillsObserver.observe(card);
 });
 
-// ========================================
-// SCROLL ANIMATIONS (General)
-// ========================================
-const animateOnScroll = document.querySelectorAll('.project-card, .cube');
-
-const scrollObserver = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.style.opacity = '1';
-      entry.target.style.transform = 'translateY(0)';
-    }
-  });
-}, {
-  threshold: 0.2,
-  rootMargin: '0px'
-});
-
-animateOnScroll.forEach(element => {
-  element.style.opacity = '0';
-  element.style.transform = 'translateY(30px)';
-  element.style.transition = 'all 0.6s ease-out';
-  scrollObserver.observe(element);
-});
