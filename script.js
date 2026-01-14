@@ -1,19 +1,11 @@
 // ========================================
-// 0. PAGE LOADER & INITIALIZATION
+// 0. INITIALIZATION
 // ========================================
 
 // Initialize EmailJS with your public key
 (function() {
   emailjs.init("YOUR_PUBLIC_KEY"); // Replace with your EmailJS public key
 })();
-
-// Page loader
-window.addEventListener('load', () => {
-  const loader = document.getElementById('pageLoader');
-  setTimeout(() => {
-    loader.classList.add('hidden');
-  }, 800);
-});
 
 // Toast Notification Function
 function showToast(message, type = 'success') {
@@ -325,36 +317,6 @@ window.onload = () => {
   fetchGitHubStats();
   typeEffect();
 };
-// ========================================
-// THEME TOGGLE
-// ========================================
-const themeToggle = document.getElementById('themeToggle');
-const themeIcon = themeToggle.querySelector('i');
-
-// Check for saved theme preference or default to dark mode
-const currentTheme = localStorage.getItem('theme') || 'dark';
-if (currentTheme === 'light') {
-  document.body.classList.add('light-mode');
-  themeIcon.classList.remove('fa-moon');
-  themeIcon.classList.add('fa-sun');
-}
-
-themeToggle.addEventListener('click', () => {
-  document.body.classList.toggle('light-mode');
-  
-  // Update icon
-  if (document.body.classList.contains('light-mode')) {
-    themeIcon.classList.remove('fa-moon');
-    themeIcon.classList.add('fa-sun');
-    localStorage.setItem('theme', 'light');
-    showToast('Light mode activated! ☀️', 'success');
-  } else {
-    themeIcon.classList.remove('fa-sun');
-    themeIcon.classList.add('fa-moon');
-    localStorage.setItem('theme', 'dark');
-    showToast('Dark mode activated! 🌙', 'success');
-  }
-});
 
 // ========================================
 // BACK TO TOP BUTTON
