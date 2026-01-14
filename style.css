@@ -1317,14 +1317,24 @@ html {
     display: none;
   }
   
-  .skill-card {
-    width: calc(50% - var(--spacing-lg));
-    height: calc(50% - var(--spacing-lg));
-    min-width: calc(50% - var(--spacing-lg));
+  .skills-grid {
+    height: 85vh;
+    padding: var(--spacing-md) var(--spacing-xl);
+    gap: var(--spacing-xl);
   }
   
-  .skills-grid {
-    padding: var(--spacing-md) var(--spacing-sm);
+  .skill-card {
+    width: 90%;
+    height: 42%;
+    min-width: 90%;
+  }
+  
+  .skill-icon {
+    font-size: 3rem;
+  }
+  
+  .skill-card h3 {
+    font-size: var(--font-base);
   }
 }
 
