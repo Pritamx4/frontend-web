@@ -1146,7 +1146,7 @@ span {
    7. SKILLS SECTION
 ======================================== */
 .skills-section {
-  padding: var(--spacing-3xl) var(--spacing-xl);
+  padding: var(--spacing-2xl) var(--spacing-xl);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -1155,8 +1155,8 @@ span {
 }
 
 .skills-section .section-title {
-  font-size: var(--font-3xl);
-  margin-bottom: var(--spacing-3xl);
+  font-size: clamp(var(--font-2xl), 6vw, var(--font-4xl));
+  margin-bottom: var(--spacing-xl);
   text-align: center;
   font-family: 'Bruno Ace', cursive;
   letter-spacing: 0.3rem;
@@ -1187,9 +1187,9 @@ span {
 }
 
 .skill-card {
-  width: var(--container-lg);
-  height: var(--container-lg);
-  min-width: var(--container-lg);
+  width: var(--container-md);
+  height: var(--container-md);
+  min-width: var(--container-md);
   flex-shrink: 0;
   background: rgba(15, 15, 15, 0.7);
   backdrop-filter: blur(8px);
@@ -1318,13 +1318,13 @@ html {
   }
   
   .skills-grid {
-    height: 85vh;
-    padding: var(--spacing-md) var(--spacing-xl);
+    height: 80vh;
+    padding: var(--spacing-sm) var(--spacing-md);
     gap: var(--spacing-xl);
   }
   
   .skill-card {
-    width: 90%;
+    width: 95%;
     height: 42%;
     min-width: 90%;
   }
