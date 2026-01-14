@@ -319,28 +319,6 @@ window.onload = () => {
 };
 
 // ========================================
-// BACK TO TOP BUTTON
-// ========================================
-const backToTopBtn = document.getElementById('backToTop');
-
-// Show/hide button on scroll
-window.addEventListener('scroll', () => {
-  if (window.scrollY > 500) {
-    backToTopBtn.classList.add('show');
-  } else {
-    backToTopBtn.classList.remove('show');
-  }
-});
-
-// Scroll to top on click
-backToTopBtn.addEventListener('click', () => {
-  window.scrollTo({
-    top: 0,
-    behavior: 'smooth'
-  });
-});
-
-// ========================================
 // SKILLS ANIMATION
 // ========================================
 const skillCards = document.querySelectorAll('.skill-card');

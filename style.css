@@ -398,10 +398,10 @@ a {
 
 .about-title {
   color: var(--color-primary);
-  font-family: 'Warnes', sans-serif;
+  font-family: 'Orbitron', sans-serif;
   font-size: clamp(1.6rem, 4vw, 2.2rem);
   text-align: center;
-  text-transform: capitalize;
+  text-transform: uppercase;
   letter-spacing: 0.25rem;
   text-shadow: 0 0 10px var(--color-primary);
   margin-bottom: 12.5rem;
@@ -544,10 +544,10 @@ a {
 
 .project-heading h1 {
   font-size: clamp(var(--font-2xl), 6vw, var(--font-4xl));
-  font-family: 'Manufacturing Consent', sans-serif;
+  font-family: 'Orbitron', sans-serif;
   font-weight: 700;
   letter-spacing: 0.2rem;
-  text-transform: capitalize;
+  text-transform: uppercase;
 }
 
 .glow-heading {
@@ -769,7 +769,7 @@ a {
 }
 
 .speech-bubble-contact h2 {
-  font-family: orbitron;
+  font-family: 'Orbitron', sans-serif;
   text-transform: uppercase;
   font-size: clamp(var(--font-xl), 3vw, 1.8rem);
   margin-bottom: var(--spacing-sm);
@@ -1159,9 +1159,9 @@ span {
   font-size: clamp(var(--font-2xl), 6vw, var(--font-4xl));
   margin-bottom: var(--spacing-xl);
   text-align: center;
-  font-family: 'Manufacturing Consent', sans-serif;
+  font-family: 'Orbitron', sans-serif;
   letter-spacing: 0.2rem;
-  text-transform: capitalize;
+  text-transform: uppercase;
 }
 
 .skills-grid {
@@ -1268,44 +1268,6 @@ span {
   font-family: 'Audiowide', cursive;
   letter-spacing: 0.15rem;
   text-shadow: 0 0 10px var(--color-neon-cyan), 0 0 5px rgba(0, 255, 204, 0.5);
-}
-
-/* ========================================
-   8. BACK TO TOP BUTTON
-======================================== */
-.back-to-top {
-  position: fixed;
-  bottom: var(--spacing-2xl);
-  right: var(--spacing-2xl);
-  width: 50px;
-  height: 50px;
-  border-radius: var(--radius-full);
-  background: rgba(20, 20, 20, 0.8);
-  backdrop-filter: blur(10px);
-  border: 2px solid var(--color-neon-pink);
-  color: var(--color-neon-pink);
-  font-size: var(--font-xl);
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all var(--transition-base);
-  z-index: var(--z-modal);
-  box-shadow: 0 0 20px rgba(255, 0, 110, 0.3);
-  opacity: 0;
-  visibility: hidden;
-  transform: scale(0);
-}
-
-.back-to-top.show {
-  opacity: 1;
-  visibility: visible;
-  transform: scale(1);
-}
-
-.back-to-top:hover {
-  transform: scale(1.1) translateY(-5px);
-  box-shadow: 0 0 30px rgba(255, 0, 110, 0.6);
 }
 
 /* Smooth Scroll Behavior */
