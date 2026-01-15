@@ -659,6 +659,7 @@ a {
   top: 0;
   left: 0;
   z-index: var(--z-navbar);
+  transition: all 0.3s ease;
 }
 
 .glow-text {
@@ -670,35 +671,69 @@ a {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
 }
 
 .nav-links {
   list-style: none;
   display: flex;
+  gap: 0.3rem;
+  margin-left: auto;
 }
 
 .nav-links li {
-  margin-left: var(--spacing-lg);
+  margin-left: var(--spacing-sm);
+  position: relative;
 }
 
 .nav-links li a {
-  color: var(--color-accent);
+  color: rgba(0, 255, 247, 0.9);
   font-family: "Orbitron", sans-serif;
   text-transform: uppercase;
-  letter-spacing: 0.0625rem;
-  font-weight: 100;
+  letter-spacing: 0.08rem;
+  font-weight: 400;
   text-decoration: none;
-  font-size: clamp(0.7rem, 1.5vw, 0.9rem);
+  font-size: clamp(0.75rem, 1.5vw, 0.9rem);
+  padding: 0.5rem 1rem;
+  display: inline-block;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.nav-links li a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 2px;
+  background: var(--color-primary);
+  transition: width 0.3s ease;
+  box-shadow: 0 0 8px var(--color-primary);
 }
 
 .nav-links li a:hover {
-  color: var(--color-secondary);
-  text-shadow: 0 0 8px var(--color-secondary);
+  color: #fff;
+  text-shadow: 0 0 8px var(--color-primary);
+}
+
+.nav-links li a:hover::after {
+  width: 80%;
 }
 
 .navbar-logo {
-  width: 42px;
+  width: 45px;
   height: auto;
+  filter: drop-shadow(0 0 6px rgba(0, 255, 247, 0.5));
+  transition: all 0.3s ease;
+}
+
+.navbar-logo:hover {
+  filter: drop-shadow(0 0 12px rgba(0, 255, 247, 0.8));
+  transform: scale(1.05);
 }
 
 .menu-icon {
@@ -765,6 +800,10 @@ a {
     align-items: center;
   }
 
+  .nav-links li {
+    margin-left: 0;
+  }
+
   .nav-links li a {
     color: #ffffff;
     font-size: clamp(1.3rem, 4vw, 2rem);
@@ -789,26 +828,10 @@ a {
     transition: all 0.3s ease;
   }
 
-  .nav-links li a::after {
-    content: '';
-    position: absolute;
-    bottom: 5px;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background: linear-gradient(90deg, var(--color-accent), var(--color-secondary));
-    transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
   .nav-links li a:hover::before,
   .nav-links li a:active::before {
     opacity: 1;
     transform: translateX(0);
-  }
-
-  .nav-links li a:hover::after,
-  .nav-links li a:active::after {
-    width: 100%;
   }
 
   .nav-links li a:hover,

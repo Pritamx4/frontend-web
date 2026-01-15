@@ -104,7 +104,84 @@ function hideLoadingScreen() {
   const loadingScreen = document.getElementById('loadingScreen');
   loadingScreen.classList.add('hidden');
   document.body.style.overflow = 'auto';
+  
+  // Animate navbar entry after loading screen
+  setTimeout(() => {
+    animateNavbarEntry();
+  }, 300);
 }
+
+// Navbar Entry Animation with GSAP
+function animateNavbarEntry() {
+  if (typeof gsap === 'undefined') {
+    console.error('GSAP not loaded for navbar animation');
+    return;
+  }
+
+  const navbarLogo = document.getElementById('navbarLogo');
+  const navItems = document.querySelectorAll('.nav-item');
+
+  // Animate logo from top
+  gsap.from(navbarLogo, {
+    y: -50,
+    opacity: 0,
+    duration: 0.8,
+    ease: 'power3.out'
+  });
+
+  // Animate nav items from right, one by one
+  navItems.forEach((item, index) => {
+    gsap.from(item, {
+      x: 100,
+      opacity: 0,
+      duration: 0.6,
+      delay: 0.3 + (index * 0.1),
+      ease: 'power2.out'
+    });
+  });
+}
+
+// Hide/Show Navbar Links on Scroll (keep logo visible)
+let lastScrollTop = 0;
+let scrollTimeout;
+
+window.addEventListener('scroll', () => {
+  if (typeof gsap === 'undefined') return;
+  
+  // Clear previous timeout
+  clearTimeout(scrollTimeout);
+  
+  // Debounce scroll event
+  scrollTimeout = setTimeout(() => {
+    const navLinks = document.querySelector('.nav-links');
+    const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+    
+    // Only apply on desktop (not in mobile menu)
+    if (window.innerWidth > 768) {
+      if (currentScroll > lastScrollTop && currentScroll > 100) {
+        // Scrolling down - hide links
+        gsap.to(navLinks, {
+          opacity: 0,
+          x: 50,
+          duration: 0.3,
+          ease: 'power2.inOut',
+          pointerEvents: 'none'
+        });
+      } else if (currentScroll < lastScrollTop) {
+        // Scrolling up - show links
+        gsap.to(navLinks, {
+          opacity: 1,
+          x: 0,
+          duration: 0.3,
+          ease: 'power2.inOut',
+          pointerEvents: 'auto'
+        });
+      }
+    }
+    
+    lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
+  }, 50); // 50ms debounce
+});
 
 // Sound System
 let audioContext;
