@@ -3,19 +3,19 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Portfolio of Pritam Singh - Web Developer specializing in HTML, CSS, JavaScript. Creating futuristic, interactive web experiences." />
-    <meta name="keywords" content="Pritam Singh, PritamX4, Web Developer, Portfolio, HTML, CSS, JavaScript, Frontend Developer" />
+    <meta name="description" content="CYBERDECK_PX4 - Neural interface for digital exploration. Frontend experiments, interactive UI, and cyberpunk aesthetics by Pritam Singh." />
+    <meta name="keywords" content="Pritam Singh, PritamX4, CYBERDECK, Frontend Developer, Interactive UI, Cyberpunk, Web Experiments, GSAP, Three.js" />
     <meta name="author" content="Pritam Singh" />
-    <meta property="og:title" content="PRITAMx4 - Web Developer Portfolio" />
-    <meta property="og:description" content="Futuristic portfolio showcasing web development projects and skills" />
+    <meta property="og:title" content="CYBERDECK_PX4 | SYSTEM ONLINE" />
+    <meta property="og:description" content="Neural interface for digital exploration. Jack in to the grid." />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://pritamx4.github.io/frontend-web/" />
     <meta property="og:image" content="https://pritamx4.github.io/frontend-web/images/px4%20main%20logo.svg" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="PRITAMx4 - Web Developer Portfolio" />
-    <meta name="twitter:description" content="Futuristic portfolio showcasing web development projects" />
+    <meta name="twitter:title" content="CYBERDECK_PX4 | SYSTEM ONLINE" />
+    <meta name="twitter:description" content="Neural interface for digital exploration. Enter the digital realm." />
     
-    <title>PRITAMx4 - Web Developer Portfolio</title>
+    <title>CYBERDECK_PX4 | SYSTEM ONLINE</title>
     <link rel="icon" href="images main logoctor.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -36,6 +36,23 @@
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
   </head>
   <body>
+    <!-- Loading Screen -->
+    <div id="loadingScreen" class="loading-screen">
+      <div class="particles" id="particles"></div>
+      <div class="loading-container">
+        <div class="loading-logo">
+          <img src="images/p.svg" alt="P" class="logo-part logo-p" id="logoP" />
+          <img src="images/x.svg" alt="X" class="logo-part logo-x" id="logoX" />
+          <img src="images/4.svg" alt="4" class="logo-part logo-4" id="logo4" />
+        </div>
+        <div class="terminal-output" id="terminalOutput"></div>
+        <div class="progress-container">
+          <div class="progress-bar" id="progressBar"></div>
+        </div>
+        <div class="progress-text" id="progressText">0%</div>
+      </div>
+    </div>
+
     <!-- Toast Notification -->
     <div id="toast" class="toast" role="alert" aria-live="polite">
       <i class="toast-icon"></i>
@@ -46,15 +63,15 @@
     <nav class="navbar" role="navigation" aria-label="Main navigation">
       <div class="container glow-text">
         <div class="logo">
-          <img src="images/px4 main logo.svg" alt="PritamX4 Logo" class="navbar-logo" />
+          <img src="images/px4 main logo.svg" alt="PritamX4 Logo" class="navbar-logo" id="navbarLogo" />
         </div>
 
         <ul id="navLinks" class="nav-links" role="list">
-          <li><a href="#section-home" aria-label="Navigate to home section">Home</a></li>
-          <li><a href="#section-about" aria-label="Navigate to UI effects section">UI Effects</a></li>
-          <li><a href="#section-skills" aria-label="Navigate to skills section">Skills</a></li>
-          <li><a href="#section-projects" aria-label="Navigate to projects section">Projects</a></li>
-          <li><a href="#section-contact" aria-label="Navigate to contact section">Contact</a></li>
+          <li><a href="#section-home" aria-label="Navigate to home section">SYSTEM_BOOT</a></li>
+          <li><a href="#section-about" aria-label="Navigate to neural grid section">NEURAL_GRID</a></li>
+          <li><a href="#section-skills" aria-label="Navigate to skill matrix section">SKILL_MATRIX</a></li>
+          <li><a href="#section-projects" aria-label="Navigate to project vault section">PROJECT_VAULT</a></li>
+          <li><a href="#section-contact" aria-label="Navigate to comm link section">COMM_LINK</a></li>
         </ul>
 
         <div class="menu-icon" onclick="toggleMenu()" role="button" aria-label="Toggle mobile menu" tabindex="0">
@@ -72,11 +89,11 @@
         <div class="typewriter">
           <span id="typedText"></span><span class="cursor"></span>
         </div>
-        <p class="subtitle">Crafting Futuristic Frontend Experiences</p>
+        <p class="subtitle">NEURAL INTERFACE | DIGITAL PLAYGROUND</p>
       </section>
       <!-- About Section with 3D Cubes -->
       <section id="section-about" class="snap-section about-section">
-        <h2 class="about-title">UI Effects</h2>
+        <h2 class="about-title">NEURAL_GRID</h2>
         <div class="cube-container">
           <!-- Glassmorphism Cube -->
           <div class="cube glass">
@@ -112,7 +129,7 @@
 
       <!-- Skills Section -->
       <section id="section-skills" class="snap-section skills-section">
-        <h2 class="section-title glow-heading">Skills</h2>
+        <h2 class="section-title glow-heading">SKILL_MATRIX</h2>
         <div class="skills-grid">
           <div class="skill-card">
             <div class="skill-icon">
@@ -276,7 +293,7 @@
           </defs>
         </svg>
         <div class="project-heading">
-          <h1 class="glow-heading">Projects</h1>
+          <h1 class="glow-heading">PROJECT_VAULT</h1>
         </div>
         <div class="cards-container">
           <div class="project-card">
@@ -360,7 +377,7 @@
       <section id="section-contact" class="snap-section contact-section">
         <div class="contact-left">
           <div class="speech-bubble-contact">
-            <h2>Contact Us:</h2>
+            <h2>COMM_LINK:</h2>
             <p>Datastream flowing. Inject your message and let's architect the impossible together!
               <span class="message-container">
                 <input type="text" class="message-input hide" placeholder="Message..." />

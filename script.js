@@ -2,6 +2,217 @@
 // 0. INITIALIZATION
 // ========================================
 
+// Loading Screen
+const terminalLines = [
+  '> BOOTING CYBERDECK_PX4 MATRIX...',
+  '> DECRYPTING NEURAL PATHWAYS...',
+  '> SYNCHRONIZING QUANTUM CORES...',
+  '> ESTABLISHING SECURE CONNECTION...'
+];
+
+let currentLine = 0;
+let progress = 0;
+
+function showLoadingScreen() {
+  const terminalOutput = document.getElementById('terminalOutput');
+  const progressBar = document.getElementById('progressBar');
+  const progressText = document.getElementById('progressText');
+  const progressContainer = document.querySelector('.progress-container');
+  
+  // Hide progress initially
+  progressContainer.style.display = 'none';
+  progressText.style.display = 'none';
+  
+  // Wait for logo animation to complete (3 seconds)
+  setTimeout(() => {
+    // Start terminal typing with letter-by-letter effect
+    let lineIndex = 0;
+    
+    function typeNextLine() {
+      if (lineIndex < terminalLines.length) {
+        const line = document.createElement('div');
+        line.className = 'line';
+        terminalOutput.appendChild(line);
+        
+        let charIndex = 0;
+        const currentText = terminalLines[lineIndex];
+        
+        function typeCharacter() {
+          if (charIndex < currentText.length) {
+            line.textContent += currentText.charAt(charIndex);
+            playTypingSound();
+            charIndex++;
+            
+            // Scroll to bottom
+            terminalOutput.scrollTop = terminalOutput.scrollHeight;
+            
+            setTimeout(typeCharacter, 50);
+          } else {
+            lineIndex++;
+            setTimeout(typeNextLine, 400);
+          }
+        }
+        
+        typeCharacter();
+      } else {
+        // Clear all lines after a pause
+        setTimeout(() => {
+          terminalOutput.innerHTML = '';
+          
+          // Show centered ACCESS GRANTED
+          setTimeout(() => {
+            const accessLine = document.createElement('div');
+            accessLine.className = 'line access-granted';
+            terminalOutput.appendChild(accessLine);
+            
+            let accessCharIndex = 0;
+            const accessText = '> ACCESS GRANTED..';
+            
+            function typeAccessChar() {
+              if (accessCharIndex < accessText.length) {
+                accessLine.textContent += accessText.charAt(accessCharIndex);
+                playTypingSound();
+                accessCharIndex++;
+                setTimeout(typeAccessChar, 80);
+              } else {
+                // Show progress bar after access granted
+                setTimeout(() => {
+                  progressContainer.style.display = 'block';
+                  progressText.style.display = 'block';
+                  
+                  // Animate progress
+                  const progressDuration = 2000;
+                  const startTime = performance.now();
+                  
+                  function updateProgress(currentTime) {
+                    const elapsed = currentTime - startTime;
+                    const progressPercent = Math.min((elapsed / progressDuration) * 100, 100);
+                    
+                    progressBar.style.width = progressPercent + '%';
+                    progressText.textContent = Math.floor(progressPercent) + '%';
+                    
+                    if (progressPercent < 100) {
+                      requestAnimationFrame(updateProgress);
+                    } else {
+                      setTimeout(hideLoadingScreen, 500);
+                    }
+                  }
+                  
+                  requestAnimationFrame(updateProgress);
+                }, 600);
+              }
+            }
+            
+            typeAccessChar();
+          }, 300);
+        }, 1000);
+      }
+    }
+    
+    typeNextLine();
+  }, 3000);
+}
+
+function hideLoadingScreen() {
+  const loadingScreen = document.getElementById('loadingScreen');
+  
+  // Simply fade out the loading screen
+  loadingScreen.classList.add('hidden');
+  document.body.style.overflow = 'auto';
+}
+
+// Sound Effects
+let audioContext;
+let soundEnabled = true;
+
+function initAudio() {
+  if (!audioContext) {
+    audioContext = new (window.AudioContext || window.webkitAudioContext)();
+  }
+}
+
+function playBeep() {
+  if (!soundEnabled) return;
+  
+  initAudio();
+  const oscillator = audioContext.createOscillator();
+  const gainNode = audioContext.createGain();
+  
+  oscillator.connect(gainNode);
+  gainNode.connect(audioContext.destination);
+  
+  oscillator.frequency.value = 800;
+  oscillator.type = 'sine';
+  
+  gainNode.gain.setValueAtTime(0.1, audioContext.currentTime);
+  gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.1);
+  
+  oscillator.start(audioContext.currentTime);
+  oscillator.stop(audioContext.currentTime + 0.1);
+}
+
+function playTypingSound() {
+  if (!soundEnabled) return;
+  
+  initAudio();
+  const oscillator = audioContext.createOscillator();
+  const gainNode = audioContext.createGain();
+  
+  oscillator.connect(gainNode);
+  gainNode.connect(audioContext.destination);
+  
+  oscillator.frequency.value = 600;
+  oscillator.type = 'square';
+  
+  gainNode.gain.setValueAtTime(0.08, audioContext.currentTime);
+  gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.08);
+  
+  oscillator.start(audioContext.currentTime);
+  oscillator.stop(audioContext.currentTime + 0.08);
+}
+
+function playHoverSound() {
+  if (!soundEnabled) return;
+  
+  initAudio();
+  const oscillator = audioContext.createOscillator();
+  const gainNode = audioContext.createGain();
+  
+  oscillator.connect(gainNode);
+  gainNode.connect(audioContext.destination);
+  
+  oscillator.frequency.value = 400;
+  oscillator.type = 'square';
+  
+  gainNode.gain.setValueAtTime(0.05, audioContext.currentTime);
+  gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.05);
+  
+  oscillator.start(audioContext.currentTime);
+  oscillator.stop(audioContext.currentTime + 0.05);
+}
+
+// Toggle sound
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'm' || e.key === 'M') {
+    soundEnabled = !soundEnabled;
+    showToast(soundEnabled ? 'Sound ON' : 'Sound OFF', 'info');
+  }
+});
+
+// Start loading screen on page load
+window.addEventListener('load', () => {
+  document.body.style.overflow = 'hidden';
+  showLoadingScreen();
+});
+
+// Add hover sounds to nav links
+document.addEventListener('DOMContentLoaded', () => {
+  const navLinks = document.querySelectorAll('.nav-links a');
+  navLinks.forEach(link => {
+    link.addEventListener('mouseenter', playHoverSound);
+  });
+});
+
 // Initialize EmailJS with your public key
 (function() {
   emailjs.init("YOUR_PUBLIC_KEY"); // Replace with your EmailJS public key
@@ -64,21 +275,21 @@ document.addEventListener('DOMContentLoaded', () => {
 // ========================================
 
 const texts = [
-  '🚀 Level Up Your Skills with Pritamx4',
-  '💻Turning Code into Creativity 💡',
-  'Pritam Singh',
-  'HTML, CSS, JavaScript',
-  'Think. Code. Create.',
-  'Passion > Perfaction',
-  'Always Learning, Always Building',
-  'Zero to Hero Journey',
-  '404: Limits NOt Found',
-  '<Frontend Dev/>',
-  'Booting up...',
-  'System Online: Code Detected',
-  'Next-gen UI Loding...',
-  'Access Granted: Frontend Mode',
-  'Digital Architect in Progress',
+  '⚡ SYSTEM INITIALIZING...',
+  '🔐 ACCESS GRANTED: CYBERDECK_PX4',
+  '💻 NEURAL INTERFACE ACTIVE',
+  '🌐 PRITAM SINGH | DIGITAL ARCHITECT',
+  '🚀 HTML • CSS • JAVASCRIPT • REACT',
+  '⚙️ COMPILING DIGITAL DREAMS...',
+  '🎯 THINK • CODE • EXECUTE',
+  '🔥 PASSION > PERFECTION',
+  '📡 ALWAYS LEARNING • ALWAYS BUILDING',
+  '🎮 ZERO TO HERO PROTOCOL',
+  '⚠️ ERROR 404: LIMITS NOT FOUND',
+  '💾 <FRONTEND_DEV/>',
+  '🔋 LOADING NEXT-GEN UI...',
+  '🌟 QUANTUM CODE DETECTED',
+  '🎨 ARCHITECTING THE IMPOSSIBLE',
 ];
 
 let textIndex = 0;
