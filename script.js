@@ -16,7 +16,14 @@ function showLoadingScreen() {
   const progressText = document.getElementById('progressText');
   const progressContainer = document.querySelector('.progress-container');
   
+  if (!terminalOutput || !progressBar || !progressText || !progressContainer) {
+    console.error('Loading screen elements not found');
+    hideLoadingScreen();
+    return;
+  }
+  
   console.log('Loading screen started');
+  
   progressContainer.style.display = 'none';
   progressText.style.display = 'none';
   
@@ -36,7 +43,7 @@ function showLoadingScreen() {
         function typeCharacter() {
           if (charIndex < currentText.length) {
             line.textContent += currentText.charAt(charIndex);
-            try { playTypingSound(); } catch(e) { console.log('Sound error:', e); }
+            try { playTypingSound(); } catch(e) { }
             charIndex++;
             terminalOutput.scrollTop = terminalOutput.scrollHeight;
             setTimeout(typeCharacter, 25); 
@@ -97,7 +104,7 @@ function showLoadingScreen() {
       }
     }
     typeNextLine();
-  }, 2000);
+  }, 1000);
 }
 
 function hideLoadingScreen() {
@@ -108,6 +115,16 @@ function hideLoadingScreen() {
   // Animate navbar entry after loading screen
   setTimeout(() => {
     animateNavbarEntry();
+    
+    // Initialize Matrix Rain after loading is complete
+    setTimeout(() => {
+      initMatrixRain();
+    }, 500);
+    
+    // Add glitch effect to typewriter
+    setTimeout(() => {
+      addGlitchEffect();
+    }, 1000);
   }, 300);
 }
 
@@ -160,21 +177,19 @@ window.addEventListener('scroll', () => {
     if (window.innerWidth > 768) {
       if (currentScroll > lastScrollTop && currentScroll > 100) {
         // Scrolling down - hide links
-        gsap.to(navLinks, {
+        gsap.to('.nav-links', {
           opacity: 0,
-          x: 50,
+          y: -20,
           duration: 0.3,
-          ease: 'power2.inOut',
-          pointerEvents: 'none'
+          ease: 'power2.in'
         });
-      } else if (currentScroll < lastScrollTop) {
+      } else {
         // Scrolling up - show links
-        gsap.to(navLinks, {
+        gsap.to('.nav-links', {
           opacity: 1,
-          x: 0,
+          y: 0,
           duration: 0.3,
-          ease: 'power2.inOut',
-          pointerEvents: 'auto'
+          ease: 'power2.out'
         });
       }
     }
@@ -218,7 +233,13 @@ document.addEventListener('keydown', (e) => {
 });
 
 console.log('Setting up window load event');
+
+// Make sure loading starts even if images fail to load
+let loadingStarted = false;
+
 window.addEventListener('load', () => {
+  if (loadingStarted) return;
+  loadingStarted = true;
   console.log('Window loaded!');
   document.body.style.overflow = 'hidden';
   setTimeout(() => {
@@ -227,7 +248,17 @@ window.addEventListener('load', () => {
   }, 100);
 });
 
+// Fallback in case load event doesn't fire
 document.addEventListener('DOMContentLoaded', () => {
+  setTimeout(() => {
+    if (!loadingStarted) {
+      loadingStarted = true;
+      console.log('DOMContentLoaded fallback triggered');
+      document.body.style.overflow = 'hidden';
+      showLoadingScreen();
+    }
+  }, 500);
+  
   const navLinks = document.querySelectorAll('.nav-links a');
   navLinks.forEach(link => link.addEventListener('mouseenter', playHoverSound));
 });
@@ -549,3 +580,164 @@ const skillsObserver = new IntersectionObserver((entries) => {
 
 skillCards.forEach(card => skillsObserver.observe(card));
 
+// ========================================
+// MATRIX RAIN EFFECT
+// ========================================
+function initMatrixRain() {
+  const canvas = document.getElementById('matrixCanvas');
+  if (!canvas) return;
+  
+  const ctx = canvas.getContext('2d');
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+
+  const matrix = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*()_+-=[]{}|;:,.<>?";
+  const fontSize = 14;
+  const columns = canvas.width / fontSize;
+  const drops = [];
+
+  for (let i = 0; i < columns; i++) {
+    drops[i] = Math.random() * -100;
+  }
+
+  function draw() {
+    ctx.fillStyle = 'rgba(0, 0, 0, 0.04)';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    
+    ctx.fillStyle = '#00fff7';
+    ctx.font = fontSize + 'px monospace';
+
+    for (let i = 0; i < drops.length; i++) {
+      const text = matrix.charAt(Math.floor(Math.random() * matrix.length));
+      ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+      if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+        drops[i] = 0;
+      }
+      drops[i]++;
+    }
+  }
+
+  setInterval(draw, 35);
+
+  window.addEventListener('resize', () => {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  });
+}
+
+// ========================================
+// GLITCH EFFECT ON TYPEWRITER
+// ========================================
+function addGlitchEffect() {
+  const typedText = document.getElementById('typedText');
+  if (!typedText) return;
+
+  setInterval(() => {
+    if (Math.random() > 0.95) {
+      typedText.classList.add('glitch');
+      setTimeout(() => {
+        typedText.classList.remove('glitch');
+      }, 300);
+    }
+  }, 3000);
+}
+
+// ========================================
+// PROJECT CARD 3D TILT EFFECT
+// ========================================
+function init3DTiltCards() {
+  const cards = document.querySelectorAll('.project-card');
+  
+  cards.forEach(card => {
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+      
+      const rotateX = (y - centerY) / 10;
+      const rotateY = (centerX - x) / 10;
+      
+      card.style.transform = `translateY(-8px) scale(1.05) perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+    });
+    
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = 'translateY(0) scale(1) perspective(1000px) rotateX(0deg) rotateY(0deg)';
+    });
+  });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  setTimeout(() => {
+    init3DTiltCards();
+  }, 1000);
+});
+
+// ========================================
+// GSAP SKILL BARS ANIMATION ON SCROLL
+// ========================================
+if (typeof gsap !== 'undefined' && gsap.registerPlugin) {
+  gsap.registerPlugin(ScrollTrigger);
+
+  // Only apply GSAP animations on desktop (not mobile)
+  if (window.innerWidth > 768) {
+    gsap.utils.toArray('.skill-card').forEach((card, index) => {
+      const progressBar = card.querySelector('.skill-progress');
+      const targetWidth = progressBar.getAttribute('data-progress');
+
+      gsap.from(card, {
+        scrollTrigger: {
+          trigger: card,
+          start: 'top 80%',
+          end: 'bottom 20%',
+          toggleActions: 'play none none reverse'
+        },
+        opacity: 0,
+        y: 50,
+        duration: 0.8,
+        delay: index * 0.1,
+        ease: 'power3.out'
+      });
+
+      gsap.to(progressBar, {
+        scrollTrigger: {
+          trigger: card,
+          start: 'top 80%',
+        },
+        width: targetWidth + '%',
+        duration: 1.5,
+        delay: index * 0.1 + 0.3,
+        ease: 'power2.out'
+      });
+    });
+  } else {
+    // On mobile, just set progress bars to their target width immediately
+    document.querySelectorAll('.skill-card').forEach(card => {
+      const progressBar = card.querySelector('.skill-progress');
+      const targetWidth = progressBar.getAttribute('data-progress');
+      progressBar.style.width = targetWidth + '%';
+    });
+  }
+}
+
+// ========================================
+// SCROLL INDICATOR - HIDE ON SCROLL
+// ========================================
+window.addEventListener('scroll', () => {
+  const scrollIndicator = document.querySelector('.scroll-indicator');
+  if (scrollIndicator) {
+    if (window.scrollY > 100) {
+      scrollIndicator.classList.add('hidden');
+    } else {
+      scrollIndicator.classList.remove('hidden');
+    }
+  }
+});
+
+// Smooth scroll to next section on click
+document.querySelector('.scroll-indicator')?.addEventListener('click', () => {
+  document.querySelector('#section-about')?.scrollIntoView({ behavior: 'smooth' });
+});

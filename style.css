@@ -924,10 +924,71 @@ a {
   overflow: hidden;
 }
 
+/* Matrix Rain Canvas */
+.matrix-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  opacity: 0.15;
+  pointer-events: none;
+}
+
+/* Scroll Indicator */
+.scroll-indicator {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  animation: bounce 2s infinite;
+  cursor: pointer;
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+
+.scroll-indicator.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.scroll-arrow {
+  width: 30px;
+  height: 30px;
+  border-left: 2px solid var(--color-primary);
+  border-bottom: 2px solid var(--color-primary);
+  transform: rotate(-45deg);
+  box-shadow: 0 0 10px var(--color-primary);
+  animation: arrowGlow 1.5s ease-in-out infinite;
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateX(-50%) translateY(0);
+  }
+  40% {
+    transform: translateX(-50%) translateY(-15px);
+  }
+  60% {
+    transform: translateX(-50%) translateY(-10px);
+  }
+}
+
+@keyframes arrowGlow {
+  0%, 100% {
+    box-shadow: 0 0 10px var(--color-primary);
+  }
+  50% {
+    box-shadow: 0 0 20px var(--color-primary), 0 0 30px var(--color-primary);
+  }
+}
+
 .hero-section .content {
   padding: var(--spacing-lg);
   position: relative;
-  z-index: 0;
+  z-index: 2;
 }
 
 .right-image {
@@ -949,6 +1010,43 @@ a {
   font-family: "space age";
   color: var(--color-primary);
   animation: fadeIn var(--duration-normal) ease forwards;
+  z-index: 3;
+}
+
+#typedText {
+  position: relative;
+  display: inline-block;
+}
+
+#typedText.glitch {
+  animation: glitch 0.3s;
+}
+
+@keyframes glitch {
+  0% {
+    transform: translate(0);
+    text-shadow: 0 0 10px var(--color-primary);
+  }
+  20% {
+    transform: translate(-2px, 2px);
+    text-shadow: 2px -2px 0 var(--color-secondary), -2px 2px 0 var(--color-accent);
+  }
+  40% {
+    transform: translate(-2px, -2px);
+    text-shadow: -2px 2px 0 var(--color-secondary), 2px -2px 0 var(--color-accent);
+  }
+  60% {
+    transform: translate(2px, 2px);
+    text-shadow: 2px 2px 0 var(--color-secondary), -2px -2px 0 var(--color-accent);
+  }
+  80% {
+    transform: translate(2px, -2px);
+    text-shadow: -2px -2px 0 var(--color-secondary), 2px 2px 0 var(--color-accent);
+  }
+  100% {
+    transform: translate(0);
+    text-shadow: 0 0 10px var(--color-primary);
+  }
 }
 
 .cursor {
@@ -1052,12 +1150,31 @@ a {
   height: 9.375rem;
   position: relative;
   transform-style: preserve-3d;
-  animation: rotate var(--duration-rotate) infinite linear;
+  animation: rotate var(--duration-rotate) infinite linear, float 3s ease-in-out infinite;
   transition: transform var(--transition-normal);
+}
+
+.cube:nth-child(2) {
+  animation-delay: -1s, -1s;
+}
+
+.cube:nth-child(3) {
+  animation-delay: -2s, -2s;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px) rotateX(0deg) rotateY(0deg);
+  }
+  50% {
+    transform: translateY(-20px) rotateX(180deg) rotateY(180deg);
+  }
 }
 
 .cube:hover {
   animation-play-state: paused;
+  transform: scale(1.1);
+  filter: drop-shadow(0 0 20px var(--color-primary));
 }
 
 .face {
@@ -1177,7 +1294,7 @@ a {
 }
 
 .project-heading h1 {
-  font-size: clamp(1.2rem, 4vw, 1.8rem);
+  font-size: clamp(1.8rem, 5vw, 2.5rem);
   font-family: "Orbitron", sans-serif;
   font-weight: 700;
   letter-spacing: 0.1rem;
@@ -1185,7 +1302,7 @@ a {
 }
 
 .glow-heading {
-  font-size: clamp(1.2rem, 4vw, 1.8rem);
+  font-size: clamp(1.8rem, 5vw, 2.5rem);
   font-weight: bold;
   letter-spacing: 0.1rem;
   background: linear-gradient(
@@ -1239,19 +1356,27 @@ a {
   border-radius: var(--radius-md);
   backdrop-filter: blur(12px);
   cursor: pointer;
-  transition: transform var(--transition-fast);
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
   overflow: hidden;
   clip-path: url(#folderClip);
+  transform-style: preserve-3d;
+  perspective: 1000px;
 }
 
 .project-card img {
   width: var(--container-lg);
   height: 10.625rem;
   object-fit: cover;
+  transition: transform var(--transition-fast);
 }
 
 .project-card:hover {
-  transform: translateY(calc(-1 * var(--spacing-sm)));
+  transform: translateY(calc(-1 * var(--spacing-sm))) scale(1.05);
+  box-shadow: 0 20px 40px rgba(0, 255, 247, 0.3), 0 0 30px rgba(0, 255, 247, 0.2);
+}
+
+.project-card:hover img {
+  transform: scale(1.1);
 }
 
 .card-info {
@@ -1340,7 +1465,7 @@ a {
 
   .project-heading h1 {
     /* font-size: clamp(var(--font-xl), 4vw, var(--font-2xl)); */
-    font-size: clamp(1.2rem, 4vw, 1.8rem);
+    font-size: clamp(1.8rem, 5vw, 2.5rem);
     letter-spacing: 0.1rem;
   }
 }
@@ -1528,11 +1653,40 @@ a {
   color: var(--color-primary);
   transition: all var(--transition-fast);
   font-size: 1.6rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.icon::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  transform: translate(-50%, -50%);
+  transition: width 0.5s, height 0.5s;
+}
+
+.icon:hover::before {
+  width: 100%;
+  height: 100%;
 }
 
 .icon:hover {
-  transform: scale(1.1);
-  box-shadow: 0 0 15px var(--color-primary);
+  transform: scale(1.15) rotate(5deg);
+  box-shadow: 0 0 20px var(--color-primary), 0 0 40px var(--color-primary);
+}
+
+.icon:hover i {
+  animation: iconBounce 0.5s ease;
+}
+
+@keyframes iconBounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
 }
 
 .icon:hover i,
@@ -1546,6 +1700,7 @@ span {
 
 .git:hover {
   background: #0e0e0f;
+  box-shadow: 0 0 20px #9dc39c, 0 0 40px #9dc39c;
 }
 
 .icon:hover i {
@@ -1557,11 +1712,8 @@ span {
 }
 
 .insta:hover {
-  background: #d81a63;
-}
-
-.icon:hover i {
-  color: var(--color-text-primary);
+  background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+  box-shadow: 0 0 20px #e6683c, 0 0 40px #dc2743;
 }
 
 .icon:nth-child(3) {
@@ -1570,6 +1722,7 @@ span {
 
 .yt:hover {
   background: #d81a1a;
+  box-shadow: 0 0 20px #ff0000, 0 0 40px #ff0000;
 }
 
 .icon:nth-child(4) {
@@ -1577,7 +1730,8 @@ span {
 }
 
 .li:hover {
-  background: #6e18a4;
+  background: #0077b5;
+  box-shadow: 0 0 20px #0077b5, 0 0 40px #0077b5;
 }
 
 /* Contact Section Responsive */
@@ -1800,7 +1954,7 @@ span {
 }
 
 .skills-section .section-title {
-  font-size: clamp(1.2rem, 4vw, 1.8rem);
+  font-size: clamp(1.8rem, 5vw, 2.5rem);
   margin-bottom: var(--spacing-xl);
   text-align: center;
   font-family: "Orbitron", sans-serif;
@@ -1814,8 +1968,8 @@ span {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  justify-content: center;
-  overflow-y: hidden;
+  justify-content: flex-start;
+  overflow-y: auto;
   overflow-x: auto;
   align-items: center;
   padding: var(--spacing-xl);
@@ -1925,24 +2079,52 @@ html {
     display: none;
   }
 
+  .skills-section {
+    min-height: 100vh;
+    height: 100vh;
+    padding: var(--spacing-2xl) var(--spacing-md);
+  }
+
   .skills-grid {
-    height: 80vh;
-    padding: var(--spacing-sm) var(--spacing-md);
-    gap: var(--spacing-xl);
+    height: calc(100vh - 160px);
+    width: 100%;
+    flex-direction: column;
+    flex-wrap: wrap;
+    overflow-y: hidden;
+    overflow-x: auto;
+    padding: var(--spacing-md) var(--spacing-xl);
+    gap: var(--spacing-2xl);
+    justify-content: center;
+    align-items: center;
   }
 
   .skill-card {
-    width: 95%;
-    height: 42%;
-    min-width: 90%;
+    width: 70vw;
+    height: calc((100vh - 200px) / 2 - var(--spacing-xl));
+    min-width: 70vw;
+    min-height: calc((100vh - 200px) / 2 - var(--spacing-xl));
+    flex-shrink: 0;
+    padding: var(--spacing-xl);
+    margin: 0 var(--spacing-lg);
   }
 
   .skill-icon {
-    font-size: 3rem;
+    font-size: 5rem;
+    margin-bottom: var(--spacing-md);
   }
 
   .skill-card h3 {
-    font-size: var(--font-base);
+    font-size: 1.5rem;
+    margin-bottom: var(--spacing-md);
+  }
+
+  .skill-bar {
+    height: 6px;
+    margin-bottom: var(--spacing-md);
+  }
+
+  .skill-percentage {
+    font-size: 1.375rem;
   }
 }
 
@@ -1953,7 +2135,7 @@ html {
   html,
   body {
     overflow-x: hidden;
-    overflow-y: hidden;
+    overflow-y: auto;
   }
 
   .snap-section {

@@ -36,6 +36,8 @@
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
     <!-- GSAP Library -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <!-- GSAP ScrollTrigger Plugin -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   </head>
   <body>
     <!-- Loading Screen -->
@@ -86,6 +88,8 @@
     <!-- Main Section with Background Image -->
     <main class="scroll-container" tabindex="0">
       <section id="section-home" class="snap-section hero-section">
+        <!-- Matrix Rain Canvas -->
+        <canvas id="matrixCanvas" class="matrix-canvas"></canvas>
         <div class="content">
           <img src="images/robo.png" alt="PNG Image" class="right-image" />
         </div>
@@ -94,6 +98,10 @@
           <span id="typedText"></span><span class="cursor"></span>
         </div>
         <p class="subtitle">NEURAL INTERFACE | DIGITAL PLAYGROUND</p>
+        <!-- Scroll Indicator -->
+        <div class="scroll-indicator">
+          <div class="scroll-arrow"></div>
+        </div>
       </section>
       <!-- About Section with 3D Cubes -->
       <section id="section-about" class="snap-section about-section">
