@@ -522,6 +522,19 @@ html {
   text-align: left;
   display: block;
   width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Responsive text size for mobile */
+@media screen and (max-width: 480px) {
+  .terminal-output {
+    font-size: 0.7rem;
+  }
+  
+  .terminal-output .line {
+    font-size: 0.7rem;
+  }
 }
 
 .terminal-output .access-granted {
@@ -691,8 +704,10 @@ a {
 .menu-icon {
   display: none;
   cursor: pointer;
-  font-size: 1.75rem;
-  color: var(--color-accent);
+  width: 28px;
+  height: 24px;
+  position: relative;
+  transition: all 0.3s ease;
 }
 
 /* Navbar Responsive */
@@ -702,28 +717,167 @@ a {
   }
 
   .nav-links {
-    display: none;
-    position: absolute;
-    top: var(--spacing-4xl);
-    right: var(--spacing-lg);
-    background: rgba(0, 0, 0, 0.85);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: #000000;
     flex-direction: column;
-    width: var(--container-sm);
-    padding: var(--spacing-md) var(--spacing-sm);
-    border-radius: var(--radius-md);
-    z-index: var(--z-tooltip);
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    z-index: var(--z-loader);
+    opacity: 0;
+    visibility: hidden;
+    overflow: hidden;
+    padding: 0;
+    list-style: none;
+  }
+
+  .nav-links::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(0, 240, 255, 0.03) 0%, transparent 70%);
+    animation: pulse 4s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); opacity: 0.3; }
+    50% { transform: scale(1.2); opacity: 0.6; }
   }
 
   .nav-links.show {
-    display: flex;
+    opacity: 1;
+    visibility: visible;
   }
 
-  .nav-links li {
-    margin: var(--spacing-sm) 0;
+  .nav-item {
+    opacity: 0;
+    transform: translateX(100%);
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .nav-links li a {
+    color: #ffffff;
+    font-size: clamp(1.3rem, 4vw, 2rem);
+    font-weight: 700;
+    letter-spacing: 0.2rem;
+    text-shadow: none;
+    position: relative;
+    padding: 1rem 2rem;
+    display: inline-block;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    background: transparent;
+  }
+
+  .nav-links li a::before {
+    content: '>';
+    position: absolute;
+    left: -25px;
+    opacity: 0;
+    color: var(--color-accent);
+    font-size: 1.5rem;
+    transform: translateX(-10px);
+    transition: all 0.3s ease;
+  }
+
+  .nav-links li a::after {
+    content: '';
+    position: absolute;
+    bottom: 5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--color-accent), var(--color-secondary));
+    transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .nav-links li a:hover::before,
+  .nav-links li a:active::before {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .nav-links li a:hover::after,
+  .nav-links li a:active::after {
+    width: 100%;
+  }
+
+  .nav-links li a:hover,
+  .nav-links li a:active {
+    color: var(--color-accent);
+    background: linear-gradient(90deg, rgba(0, 240, 255, 0.05), transparent);
+    transform: translateX(8px);
+    letter-spacing: 0.25rem;
+    border-left: 3px solid var(--color-accent);
+    padding-left: calc(2rem - 3px);
+  }
+
+  .nav-links li a:active {
+    transform: translateX(8px) scale(0.98);
+    background: linear-gradient(90deg, rgba(0, 240, 255, 0.1), transparent);
   }
 
   .menu-icon {
     display: block;
+    position: relative;
+    z-index: 10000;
+  }
+
+  .menu-line {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: var(--color-accent);
+    border-radius: 2px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .menu-line:nth-child(1) {
+    top: 0;
+  }
+
+  .menu-line:nth-child(2) {
+    top: 50%;
+    transform: translateY(-50%);
+    width: 70%;
+    right: 0;
+    left: auto;
+  }
+
+  .menu-line:nth-child(3) {
+    bottom: 0;
+  }
+
+  /* Active state - Transform to X */
+  .menu-icon.active .menu-line:nth-child(1) {
+    top: 50%;
+    transform: translateY(-50%) rotate(45deg);
+  }
+
+  .menu-icon.active .menu-line:nth-child(2) {
+    opacity: 0;
+    width: 100%;
+    left: 0;
+    transform: translateY(-50%) translateX(-20px);
+  }
+
+  .menu-icon.active .menu-line:nth-child(3) {
+    bottom: 50%;
+    transform: translateY(50%) rotate(-45deg);
+  }
+
+  .menu-icon:active {
+    transform: scale(0.9);
   }
 }
 

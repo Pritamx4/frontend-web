@@ -1,9 +1,13 @@
+// ========================================
+// 0. INITIALIZATION
+// ========================================
+
 console.log('Script loaded!');
 
-// Loading Screen Terminal Lines
+// Loading Screen
 const terminalLines = [
   '> $ git clone Pritamx4/CYBERDECK_Px4',
-  '> COMPILING SOURCE [██████████████] 100%',
+  '> COMPILING SOURCE [████████] 100%',
   '> DEPLOYING TO CYBERDECK_PX4...'
 ];
 
@@ -17,11 +21,15 @@ function showLoadingScreen() {
   const progressContainer = document.querySelector('.progress-container');
   
   console.log('Loading screen started');
+  
+  // Hide progress initially
   progressContainer.style.display = 'none';
   progressText.style.display = 'none';
   
+  // Wait for logo animation to complete (2 seconds - reduced)
   setTimeout(() => {
     console.log('Starting terminal typing');
+    // Start terminal typing with letter-by-letter effect
     let lineIndex = 0;
     
     function typeNextLine() {
@@ -36,20 +44,31 @@ function showLoadingScreen() {
         function typeCharacter() {
           if (charIndex < currentText.length) {
             line.textContent += currentText.charAt(charIndex);
-            try { playTypingSound(); } catch(e) { console.log('Sound error:', e); }
+            try {
+              playTypingSound();
+            } catch(e) {
+              console.log('Sound error:', e);
+            }
             charIndex++;
+            
+            // Scroll to bottom
             terminalOutput.scrollTop = terminalOutput.scrollHeight;
+            
             setTimeout(typeCharacter, 25); 
           } else {
             lineIndex++;
             setTimeout(typeNextLine, 150); 
           }
         }
+        
         typeCharacter();
       } else {
         console.log('All lines typed, clearing...');
+        // Clear all lines after a pause
         setTimeout(() => {
           terminalOutput.innerHTML = '';
+          
+          // Show centered ACCESS GRANTED
           setTimeout(() => {
             const accessLine = document.createElement('div');
             accessLine.className = 'line access-granted';
@@ -61,16 +80,20 @@ function showLoadingScreen() {
             function typeAccessChar() {
               if (accessCharIndex < accessText.length) {
                 accessLine.textContent += accessText.charAt(accessCharIndex);
-                try { playTypingSound(); } catch(e) {}
+                try {
+                  playTypingSound();
+                } catch(e) {}
                 accessCharIndex++;
-                setTimeout(typeAccessChar, 40);
+                setTimeout(typeAccessChar, 40); // Faster: 80ms → 40ms
               } else {
                 console.log('Starting progress bar');
+                // Show progress bar after access granted
                 setTimeout(() => {
                   progressContainer.style.display = 'block';
                   progressText.style.display = 'block';
                   
-                  const progressDuration = 1200;
+                  // Animate progress
+                  const progressDuration = 1200; // Faster: 2000ms → 1200ms
                   const startTime = performance.now();
                   
                   function updateProgress(currentTime) {
@@ -84,55 +107,104 @@ function showLoadingScreen() {
                       requestAnimationFrame(updateProgress);
                     } else {
                       console.log('Loading complete');
-                      setTimeout(hideLoadingScreen, 200);
+                      setTimeout(hideLoadingScreen, 200); // Faster: 500ms → 200ms
                     }
                   }
+                  
                   requestAnimationFrame(updateProgress);
-                }, 400);
+                }, 400); // Faster: 600ms → 400ms
               }
             }
+            
             typeAccessChar();
-          }, 200);
-        }, 400);
+          }, 200); // Faster: 300ms → 200ms
+        }, 400); // Faster: 1000ms → 400ms
       }
     }
+    
     typeNextLine();
-  }, 2000);
+  }, 2000); // Faster: 3000ms → 2000ms
 }
 
 function hideLoadingScreen() {
   const loadingScreen = document.getElementById('loadingScreen');
+  
+  // Simply fade out the loading screen
   loadingScreen.classList.add('hidden');
   document.body.style.overflow = 'auto';
 }
 
-// Sound System
+// Sound Effects
 let audioContext;
 let soundEnabled = true;
 
 function initAudio() {
-  if (!audioContext) audioContext = new (window.AudioContext || window.webkitAudioContext)();
+  if (!audioContext) {
+    audioContext = new (window.AudioContext || window.webkitAudioContext)();
+  }
 }
 
-function createSound(freq, type, duration, gain) {
+function playBeep() {
   if (!soundEnabled) return;
+  
   initAudio();
-  const osc = audioContext.createOscillator();
+  const oscillator = audioContext.createOscillator();
   const gainNode = audioContext.createGain();
-  osc.connect(gainNode);
+  
+  oscillator.connect(gainNode);
   gainNode.connect(audioContext.destination);
-  osc.frequency.value = freq;
-  osc.type = type;
-  gainNode.gain.setValueAtTime(gain, audioContext.currentTime);
-  gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + duration);
-  osc.start(audioContext.currentTime);
-  osc.stop(audioContext.currentTime + duration);
+  
+  oscillator.frequency.value = 800;
+  oscillator.type = 'sine';
+  
+  gainNode.gain.setValueAtTime(0.1, audioContext.currentTime);
+  gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.1);
+  
+  oscillator.start(audioContext.currentTime);
+  oscillator.stop(audioContext.currentTime + 0.1);
 }
 
-function playBeep() { createSound(800, 'sine', 0.1, 0.1); }
-function playTypingSound() { createSound(600, 'square', 0.08, 0.08); }
-function playHoverSound() { createSound(400, 'square', 0.05, 0.05); }
+function playTypingSound() {
+  if (!soundEnabled) return;
+  
+  initAudio();
+  const oscillator = audioContext.createOscillator();
+  const gainNode = audioContext.createGain();
+  
+  oscillator.connect(gainNode);
+  gainNode.connect(audioContext.destination);
+  
+  oscillator.frequency.value = 600;
+  oscillator.type = 'square';
+  
+  gainNode.gain.setValueAtTime(0.08, audioContext.currentTime);
+  gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.08);
+  
+  oscillator.start(audioContext.currentTime);
+  oscillator.stop(audioContext.currentTime + 0.08);
+}
 
+function playHoverSound() {
+  if (!soundEnabled) return;
+  
+  initAudio();
+  const oscillator = audioContext.createOscillator();
+  const gainNode = audioContext.createGain();
+  
+  oscillator.connect(gainNode);
+  gainNode.connect(audioContext.destination);
+  
+  oscillator.frequency.value = 400;
+  oscillator.type = 'square';
+  
+  gainNode.gain.setValueAtTime(0.05, audioContext.currentTime);
+  gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.05);
+  
+  oscillator.start(audioContext.currentTime);
+  oscillator.stop(audioContext.currentTime + 0.05);
+}
+
+// Toggle sound
 document.addEventListener('keydown', (e) => {
   if (e.key === 'm' || e.key === 'M') {
     soundEnabled = !soundEnabled;
@@ -140,41 +212,57 @@ document.addEventListener('keydown', (e) => {
   }
 });
 
+// Start loading screen on page load
 console.log('Setting up window load event');
 window.addEventListener('load', () => {
   console.log('Window loaded!');
   document.body.style.overflow = 'hidden';
+  
+  // Small delay to ensure everything is loaded
   setTimeout(() => {
     console.log('Calling showLoadingScreen');
     showLoadingScreen();
   }, 100);
 });
 
+// Add hover sounds to nav links
 document.addEventListener('DOMContentLoaded', () => {
   const navLinks = document.querySelectorAll('.nav-links a');
-  navLinks.forEach(link => link.addEventListener('mouseenter', playHoverSound));
+  navLinks.forEach(link => {
+    link.addEventListener('mouseenter', playHoverSound);
+  });
 });
 
-// Initialize EmailJS
+// Initialize EmailJS with your public key
 (function() {
-  emailjs.init("YOUR_PUBLIC_KEY");
+  emailjs.init("YOUR_PUBLIC_KEY"); // Replace with your EmailJS public key
 })();
 
+// Toast Notification Function
 function showToast(message, type = 'success') {
   const toast = document.getElementById('toast');
   const toastMessage = toast.querySelector('.toast-message');
+  
   toastMessage.textContent = message;
   toast.className = `toast ${type}`;
   toast.classList.add('show');
-  setTimeout(() => toast.classList.remove('show'), 4000);
+  
+  setTimeout(() => {
+    toast.classList.remove('show');
+  }, 4000);
 }
 
-// Mobile Menu with GSAP
+// ========================================
+// 1. NAVBAR FUNCTIONALITY
+// ========================================
+
+// Toggle mobile menu with GSAP animations
 function toggleMenu() {
   const navLinks = document.getElementById('navLinks');
   const menuIcon = document.querySelector('.menu-icon');
   const menuItems = document.querySelectorAll('.nav-item');
 
+  // Check if GSAP is loaded
   if (typeof gsap === 'undefined') {
     console.error('GSAP not loaded');
     navLinks.classList.toggle('show');
@@ -182,45 +270,81 @@ function toggleMenu() {
   }
 
   if (!navLinks.classList.contains('show')) {
+    // Opening animation - each item starts when previous is 20% done
     navLinks.classList.add('show');
     menuIcon.classList.add('active');
 
-    gsap.to(navLinks, { opacity: 1, duration: 0.3, ease: 'power2.out' });
+    // Fade in background first
+    gsap.to(navLinks, {
+      opacity: 1,
+      duration: 0.3,
+      ease: 'power2.out'
+    });
 
+    // Animate each item with cascade effect
     menuItems.forEach((item, index) => {
       gsap.fromTo(item, 
-        { opacity: 0, x: '100%' },
-        { opacity: 1, x: 0, duration: 0.6, delay: index * 0.12, ease: 'power3.out' }
+        {
+          opacity: 0,
+          x: '100%'
+        },
+        {
+          opacity: 1,
+          x: 0,
+          duration: 0.6,
+          delay: index * 0.12, // Each starts when previous is 20% done (0.6 * 0.2 = 0.12)
+          ease: 'power3.out'
+        }
       );
     });
+
   } else {
+    // Closing animation - reverse cascade
     menuIcon.classList.remove('active');
 
+    // Animate items out
     menuItems.forEach((item, index) => {
-      gsap.to(item, { opacity: 0, x: '100%', duration: 0.4, delay: index * 0.05, ease: 'power2.in' });
+      gsap.to(item, {
+        opacity: 0,
+        x: '100%',
+        duration: 0.4,
+        delay: index * 0.05,
+        ease: 'power2.in'
+      });
     });
 
+    // Fade out background
     gsap.to(navLinks, {
       opacity: 0,
       duration: 0.3,
       delay: 0.3,
       ease: 'power2.in',
-      onComplete: () => navLinks.classList.remove('show')
+      onComplete: () => {
+        navLinks.classList.remove('show');
+      }
     });
   }
 }
 
+// Auto-close menu when a link is clicked (on mobile)
 document.addEventListener('DOMContentLoaded', () => {
   const links = document.querySelectorAll('#navLinks a');
+
   links.forEach(link => {
     link.addEventListener('click', () => {
       const navLinks = document.getElementById('navLinks');
-      if (navLinks.classList.contains('show')) toggleMenu();
+      
+      if (navLinks.classList.contains('show')) {
+        toggleMenu();
+      }
     });
   });
 });
 
-// Hero Typewriter Effect
+// ========================================
+// 2. HERO SECTION - TYPEWRITER EFFECT
+// ========================================
+
 const texts = [
   '⚡ SYSTEM INITIALIZING...',
   '🔐 ACCESS GRANTED: CYBERDECK_PX4',
@@ -267,26 +391,36 @@ function erase() {
   }
 }
 
-document.addEventListener('DOMContentLoaded', () => setTimeout(type, 1000));
+// Start typewriter effect on page load
+document.addEventListener('DOMContentLoaded', () => {
+  setTimeout(type, 1000);
+});
 
-// Contact Message Functionality
+// ========================================
+// 5. CONTACT SECTION - Message Functionality
+// ========================================
 const sendIcon = document.querySelector('.send-icon');
 const messageInput = document.querySelector('.message-input');
+
 let isInputVisible = false;
 
 sendIcon.addEventListener('click', (e) => {
   e.stopPropagation();
   
   if (!isInputVisible) {
+    // Show input field
     messageInput.classList.remove('hide');
     messageInput.classList.add('show');
     isInputVisible = true;
     messageInput.focus();
   } else {
+    // Send message
     const message = messageInput.value.trim();
     if (message) {
+      // Add sending animation
       sendIcon.classList.add('sending');
       
+      // Send email using EmailJS
       const templateParams = {
         message: message,
         from_name: 'Portfolio Visitor',
@@ -297,6 +431,8 @@ sendIcon.addEventListener('click', (e) => {
         .then((response) => {
           console.log('SUCCESS!', response.status, response.text);
           showToast('Message sent successfully! I\'ll get back to you soon.', 'success');
+          
+          // Reset
           messageInput.value = '';
           messageInput.classList.remove('show');
           messageInput.classList.add('hide');
@@ -313,6 +449,7 @@ sendIcon.addEventListener('click', (e) => {
   }
 });
 
+// Close input if clicking outside
 document.addEventListener('click', (e) => {
   if (!e.target.closest('.message-container') && isInputVisible) {
     messageInput.classList.remove('show');
@@ -321,7 +458,11 @@ document.addEventListener('click', (e) => {
   }
 });
 
-// Bottom Tab Terminal
+// ========================================
+// 6. BOTTOM TAB - TERMINAL FUNCTIONALITY
+// ========================================
+
+// Auto-show bottom tab on hover and hide after inactivity
 document.addEventListener('DOMContentLoaded', () => {
   const bottomTab = document.getElementById('bottomTab');
   const toggleButton = bottomTab.querySelector('.toggle-btn');
@@ -332,6 +473,7 @@ document.addEventListener('DOMContentLoaded', () => {
     clearTimeout(hideTimeout);
     icon.classList.remove('fa-angle-up');
     icon.classList.add('fa-angle-down');
+
     bottomTab.classList.remove('hidden');
     bottomTab.classList.add('shown');
   });
@@ -353,6 +495,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }, 5000);
 });
 
+// Toggle the bottom tab visibility
 let hideTimeout;
 function toggleBottomTab() {
   const tab = document.getElementById('bottomTab');
@@ -375,7 +518,7 @@ function toggleBottomTab() {
   }
 }
 
-// Terminal Repo Stats
+// Terminal typing effect and GitHub repo stats
 const terminalElement = document.getElementById('terminal-text');
 const statsContainer = document.getElementById('stats-container');
 const progressBars = document.querySelectorAll('.progress-bar');
@@ -390,11 +533,14 @@ const messages = [
 
 let msgIndex = 0;
 let charPos = 0;
-let repoData = [55, 35, 10];
-
+let repoData = [55, 35, 10]; 
+// Fetch GitHub stats
 async function fetchGitHubStats() {
   try {
-    const response = await fetch('https://api.github.com/repos/Pritamx4/frontend-web/languages');
+    const response = await fetch(
+      'https://api.github.com/repos/Pritamx4/frontend-web/languages'
+    );
+
     if (!response.ok) throw new Error('API Limit Reached');
 
     const data = await response.json();
@@ -412,6 +558,7 @@ async function fetchGitHubStats() {
   }
 }
 
+// Terminal typing effect
 function typeEffect() {
   if (msgIndex < messages.length) {
     if (charPos < messages[msgIndex].length) {
@@ -429,6 +576,7 @@ function typeEffect() {
   }
 }
 
+// Show statistics with animation
 function showStats() {
   statsContainer.style.opacity = '1';
   statsContainer.style.transition = 'opacity 1s ease';
@@ -437,21 +585,28 @@ function showStats() {
     progressBars.forEach((bar, index) => {
       const val = repoData[index];
       const safeVal = isNaN(val) ? 0 : val;
+
       bar.style.width = safeVal + '%';
-      if (percentTexts[index]) percentTexts[index].innerText = safeVal + '%';
+      if (percentTexts[index]) {
+        percentTexts[index].innerText = safeVal + '%';
+      }
     });
   }, 500);
 }
 
+// Initialize terminal effect on page load
 window.onload = () => {
   fetchGitHubStats();
   typeEffect();
 };
 
-// Skills Animation Observer
+// ========================================
+// SKILLS ANIMATION
+// ========================================
 const skillCards = document.querySelectorAll('.skill-card');
 const skillProgressBars = document.querySelectorAll('.skill-progress');
 
+// Intersection Observer for skills section
 const observerOptions = {
   threshold: 0.3,
   rootMargin: '0px'
@@ -460,15 +615,23 @@ const observerOptions = {
 const skillsObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
+      // Animate cards
       entry.target.classList.add('animate-in');
+      
+      // Animate progress bars
       const progressBar = entry.target.querySelector('.skill-progress');
       if (progressBar) {
         const targetWidth = progressBar.getAttribute('data-progress');
-        setTimeout(() => progressBar.style.width = targetWidth + '%', 200);
+        setTimeout(() => {
+          progressBar.style.width = targetWidth + '%';
+        }, 200);
       }
     }
   });
 }, observerOptions);
 
-skillCards.forEach(card => skillsObserver.observe(card));
+// Observe all skill cards
+skillCards.forEach(card => {
+  skillsObserver.observe(card);
+});
 
