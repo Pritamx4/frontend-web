@@ -265,7 +265,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Initialize EmailJS
 (function() {
-  emailjs.init("YOUR_PUBLIC_KEY");
+  emailjs.init("glYVjrgq1NH52F9M2");
 })();
 
 function showToast(message, type = 'success') {
@@ -392,32 +392,50 @@ sendIcon.addEventListener('click', (e) => {
     messageInput.focus();
   } else {
     const message = messageInput.value.trim();
-    if (message) {
-      sendIcon.classList.add('sending');
-      
-      const templateParams = {
-        message: message,
-        from_name: 'Portfolio Visitor',
-        to_name: 'Pritam Singh'
-      };
-      
-      emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', templateParams)
-        .then((response) => {
-          console.log('SUCCESS!', response.status, response.text);
-          showToast('Message sent successfully! I\'ll get back to you soon.', 'success');
-          messageInput.value = '';
+    
+    // Validate message length
+    if (!message) {
+      showToast('Please enter a message first!', 'warning');
+      return;
+    }
+    
+    if (message.length < 10) {
+      showToast('Message too short! Please write at least 10 characters.', 'warning');
+      return;
+    }
+    
+    if (message.length > 500) {
+      showToast('Message too long! Please keep it under 500 characters.', 'warning');
+      return;
+    }
+    
+    // Send message
+    sendIcon.classList.add('sending', 'fly-away');
+    
+    const templateParams = {
+      message: message,
+      from_name: 'Portfolio Visitor',
+      to_name: 'Pritam Singh'
+    };
+    
+    emailjs.send('Pritamx4', 'Pritamx4', templateParams)
+      .then((response) => {
+        console.log('SUCCESS!', response.status, response.text);
+        showToast('✓ Message sent successfully! I\'ll get back to you soon.', 'success');
+        messageInput.value = '';
+        
+        setTimeout(() => {
+          sendIcon.classList.remove('fly-away');
           messageInput.classList.remove('show');
           messageInput.classList.add('hide');
           sendIcon.classList.remove('sending');
           isInputVisible = false;
-        }, (error) => {
-          console.error('FAILED...', error);
-          showToast('Failed to send message. Please try again.', 'error');
-          sendIcon.classList.remove('sending');
-        });
-    } else {
-      showToast('Please enter a message first!', 'error');
-    }
+        }, 800);
+      }, (error) => {
+        console.error('FAILED...', error);
+        showToast('✗ Failed to send message. Please try again.', 'error');
+        sendIcon.classList.remove('sending', 'fly-away');
+      });
   }
 });
 
@@ -428,6 +446,32 @@ document.addEventListener('click', (e) => {
     isInputVisible = false;
   }
 });
+
+// Active Navigation Indicator
+const sections = document.querySelectorAll('section[id]');
+const navItems = document.querySelectorAll('.nav-links a');
+
+function updateActiveNav() {
+  const scrollY = window.pageYOffset;
+  
+  sections.forEach(section => {
+    const sectionTop = section.offsetTop - 100;
+    const sectionHeight = section.offsetHeight;
+    const sectionId = section.getAttribute('id');
+    
+    if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
+      navItems.forEach(item => {
+        item.classList.remove('active');
+        if (item.getAttribute('href') === `#${sectionId}`) {
+          item.classList.add('active');
+        }
+      });
+    }
+  });
+}
+
+window.addEventListener('scroll', updateActiveNav);
+updateActiveNav(); // Call on page load
 
 // Bottom Tab Terminal
 document.addEventListener('DOMContentLoaded', () => {
@@ -723,21 +767,4 @@ if (typeof gsap !== 'undefined' && gsap.registerPlugin) {
   }
 }
 
-// ========================================
-// SCROLL INDICATOR - HIDE ON SCROLL
-// ========================================
-window.addEventListener('scroll', () => {
-  const scrollIndicator = document.querySelector('.scroll-indicator');
-  if (scrollIndicator) {
-    if (window.scrollY > 100) {
-      scrollIndicator.classList.add('hidden');
-    } else {
-      scrollIndicator.classList.remove('hidden');
-    }
-  }
-});
 
-// Smooth scroll to next section on click
-document.querySelector('.scroll-indicator')?.addEventListener('click', () => {
-  document.querySelector('#section-about')?.scrollIntoView({ behavior: 'smooth' });
-});

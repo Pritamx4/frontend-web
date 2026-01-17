@@ -936,55 +936,6 @@ a {
   pointer-events: none;
 }
 
-/* Scroll Indicator */
-.scroll-indicator {
-  position: absolute;
-  bottom: 30px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 10;
-  animation: bounce 2s infinite;
-  cursor: pointer;
-  opacity: 1;
-  transition: opacity 0.3s ease;
-}
-
-.scroll-indicator.hidden {
-  opacity: 0;
-  pointer-events: none;
-}
-
-.scroll-arrow {
-  width: 30px;
-  height: 30px;
-  border-left: 2px solid var(--color-primary);
-  border-bottom: 2px solid var(--color-primary);
-  transform: rotate(-45deg);
-  box-shadow: 0 0 10px var(--color-primary);
-  animation: arrowGlow 1.5s ease-in-out infinite;
-}
-
-@keyframes bounce {
-  0%, 20%, 50%, 80%, 100% {
-    transform: translateX(-50%) translateY(0);
-  }
-  40% {
-    transform: translateX(-50%) translateY(-15px);
-  }
-  60% {
-    transform: translateX(-50%) translateY(-10px);
-  }
-}
-
-@keyframes arrowGlow {
-  0%, 100% {
-    box-shadow: 0 0 10px var(--color-primary);
-  }
-  50% {
-    box-shadow: 0 0 20px var(--color-primary), 0 0 30px var(--color-primary);
-  }
-}
-
 .hero-section .content {
   padding: var(--spacing-lg);
   position: relative;
@@ -1955,7 +1906,7 @@ span {
 
 .skills-section .section-title {
   font-size: clamp(1.8rem, 5vw, 2.5rem);
-  margin-bottom: var(--spacing-xl);
+  margin-bottom: var(--spacing-lg);
   text-align: center;
   font-family: "Orbitron", sans-serif;
   letter-spacing: 0.1rem;
@@ -2100,12 +2051,12 @@ html {
 
   .skill-card {
     width: 70vw;
-    height: calc((100vh - 200px) / 2 - var(--spacing-xl));
+    height: 25vh;
     min-width: 70vw;
-    min-height: calc((100vh - 200px) / 2 - var(--spacing-xl));
+    min-height: 35vh;
     flex-shrink: 0;
-    padding: var(--spacing-xl);
-    margin: 0 var(--spacing-lg);
+    padding: var(--spacing-lg);
+    margin: 0 var(--spacing-md);
   }
 
   .skill-icon {
@@ -2170,5 +2121,17 @@ html {
 
   .social-icons {
     justify-content: center;
+  }
+}
+
+/* Send Icon Fly Away */
+.send-icon.fly-away {
+  animation: flyAway 0.8s ease forwards;
+}
+
+@keyframes flyAway {
+  to {
+    transform: translate(100px, -100px) rotate(45deg) scale(0);
+    opacity: 0;
   }
 }
