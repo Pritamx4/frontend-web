@@ -1749,155 +1749,284 @@ span {
 /* ========================================
    6. BOTTOM TAB (TERMINAL)
 ======================================== */
-.bottom {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+.bottom-tab {
   position: fixed;
   bottom: 0;
-  height: 30vh;
   left: 4.375rem;
   width: 90%;
-  backdrop-filter: blur(10px);
+  height: 35vh;
   background: rgba(20, 20, 20, 0.75);
-  box-shadow: var(--shadow-lg);
-  z-index: var(--z-navbar);
+  backdrop-filter: blur(15px);
   border-radius: var(--radius-xl) var(--radius-xl) 0 0;
-  padding: var(--spacing-lg);
+  box-shadow: var(--shadow-lg);
+  z-index: 999;
+  transform: translateY(100%);
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.toggle-btn {
+.bottom-tab.open {
+  transform: translateY(0);
+}
+
+.tab-toggle {
   position: absolute;
   top: -2.5rem;
   left: 50%;
   transform: translateX(-50%);
-  font-size: var(--font-xl);
-  padding: var(--spacing-xs) 2.1875rem;
+  padding: var(--spacing-xs) 2rem;
   background: rgba(20, 20, 20, 0.75);
   backdrop-filter: blur(10px);
   border: none;
   border-radius: var(--radius-md) var(--radius-md) 0 0;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-neon-cyan);
+  font-size: var(--font-xl);
   box-shadow: var(--shadow-lg);
-  z-index: var(--z-modal);
-  transition: background var(--transition-fast),
-    box-shadow var(--transition-fast);
+  transition: all var(--transition-fast);
+  z-index: 1000;
 }
 
-.toggle-btn:hover {
+.tab-toggle:hover {
   background: rgba(30, 30, 30, 0.85);
   box-shadow: 0 -4px 25px rgba(0, 0, 0, 0.5);
 }
 
-.bottom.hidden {
-  animation: slidedown var(--duration-slow) forwards;
+.tab-toggle i {
+  transition: transform 0.3s ease;
 }
 
-.bottom.shown {
-  animation: slideup var(--duration-slow) forwards;
+.bottom-tab.open .tab-toggle i {
+  transform: rotate(180deg);
 }
 
-@keyframes slidedown {
-  0% {
-    transform: translateY(0%);
-  }
-  100% {
-    transform: translateY(100%);
-  }
-}
-
-@keyframes slideup {
-  0% {
-    transform: translateY(100%);
-  }
-  100% {
-    transform: translateY(0%);
-  }
-}
-
-.bottom-content {
-  display: flex;
-  position: absolute;
-  align-items: center;
-  justify-content: space-evenly;
-  width: 95.5%;
-  height: 96%;
-  top: var(--spacing-xs);
-}
-
-/* Terminal Wrapper */
-.terminal-wrapper {
-  display: flex;
-  padding: 25px;
-  gap: 30px;
-  align-items: center;
-}
-
-.terminal-left {
-  flex: 1;
-  white-space: nowrap;
-  color: var(--color-neon-cyan);
-  font-size: 13px;
-  line-height: 1.8;
-}
-
-.terminal-right {
-  flex: 1.5;
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-}
-
-.stat-row {
-  display: flex;
-  align-items: center;
-  width: 100%;
-}
-
-.stat-row span:first-child {
-  width: 90px;
-  color: var(--color-neon-cyan);
-  font-size: var(--font-xs);
-  font-weight: bold;
-  text-transform: uppercase;
-}
-
-.progress-bg {
-  flex-grow: 1;
-  height: 14px;
-  background: rgba(0, 255, 204, 0.05);
-  border: 1px solid rgba(0, 255, 204, 0.4);
-  margin: 0 15px;
-  position: relative;
-  box-shadow: inset 0 0 5px rgba(0, 255, 204, 0.2);
-}
-
-.progress-bar {
+.tab-content {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 2rem;
+  padding: 2rem;
   height: 100%;
-  width: 0%;
-  background: var(--color-neon-cyan);
-  box-shadow: 0 0 15px var(--color-neon-cyan), 0 0 5px var(--color-text-primary);
-  transition: width var(--duration-slow) cubic-bezier(0.4, 0, 0.2, 1);
-  background-image: linear-gradient(
-    90deg,
-    rgba(0, 0, 0, 0.3) 2px,
-    transparent 2px
-  );
-  background-size: 10px 100%;
+  overflow: hidden;
 }
 
-.percent {
-  width: 40px;
+.terminal-output {
+  font-family: 'Courier New', monospace;
+  font-size: 0.85rem;
+  color: var(--color-neon-cyan);
+  line-height: 1.8;
+  overflow-y: auto;
+  padding-right: 1rem;
+  text-shadow: 0 0 8px rgba(0, 255, 247, 0.6);
+}
+
+.terminal-output::-webkit-scrollbar {
+  width: 4px;
+}
+
+.terminal-output::-webkit-scrollbar-thumb {
+  background: var(--color-neon-cyan);
+  border-radius: 2px;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  position: relative;
+  overflow-y: auto;
+  padding-right: 1rem;
+}
+
+.stats-grid::-webkit-scrollbar {
+  width: 4px;
+}
+
+.stats-grid::-webkit-scrollbar-thumb {
+  background: var(--color-neon-cyan);
+  border-radius: 2px;
+}
+
+/* Stats Chart */
+.stats-chart-container {
+  grid-column: span 2;
+  background: rgba(0, 255, 247, 0.03);
+  border: 1px solid rgba(0, 255, 247, 0.3);
+  border-radius: 8px;
+  padding: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.stats-chart-container.graph {
+  min-height: 400px;
+  height: auto;
+  padding: 2rem;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.stats-chart-container::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  background: linear-gradient(45deg, transparent, rgba(0, 255, 247, 0.1), transparent);
+  animation: chartGlow 3s linear infinite;
+}
+
+@keyframes chartGlow {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+#statsChart {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: auto;
+  min-height: 300px;
+}
+
+.graph #statsChart {
+  width: auto;
+  max-width: 100%;
+  height: auto;
+}
+
+.sparkle-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.stat-item {
+  background: rgba(0, 255, 247, 0.03);
+  border: 1px solid rgba(0, 255, 247, 0.2);
+  border-radius: 8px;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  transition: all 0.3s ease;
+}
+
+.stat-item:hover {
+  background: rgba(0, 255, 247, 0.08);
+  border-color: rgba(0, 255, 247, 0.4);
+  transform: translateY(-2px);
+}
+
+.stat-label {
+  color: var(--color-neon-cyan);
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  white-space: nowrap;
+  min-width: 100px;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.stat-label i {
+  font-size: 1rem;
+  opacity: 0.8;
+}
+
+/* Language Stats */
+.language-stat {
+  grid-column: span 2;
+  flex-wrap: nowrap;
+}
+
+.stat-bar-bg {
+  flex: 1;
+  height: 20px;
+  background: rgba(0, 255, 247, 0.05);
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+  border: 1px solid rgba(0, 255, 247, 0.2);
+}
+
+.stat-bar {
+  height: 100%;
+  background: linear-gradient(90deg, var(--color-neon-cyan), var(--color-secondary));
+  border-radius: 10px;
+  transition: width 1s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 0 15px rgba(0, 255, 247, 0.6);
+  position: relative;
+  overflow: hidden;
+}
+
+.stat-bar::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+  100% { left: 100%; }
+}
+
+.stat-percent {
   color: var(--color-neon-cyan);
   font-weight: bold;
-  font-family: "Courier New", monospace;
-  text-shadow: 0 0 5px var(--color-neon-cyan);
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.9rem;
+  min-width: 45px;
+  text-align: right;
+  text-shadow: 0 0 8px var(--color-neon-cyan);
 }
 
-/* Bottom Tab Responsive */
+/* GitHub Stats */
+.github-stat {
+  justify-content: space-between;
+  background: rgba(0, 255, 247, 0.05);
+  border-left: 3px solid var(--color-neon-cyan);
+}
+
+.stat-value {
+  color: var(--color-neon-cyan);
+  font-weight: bold;
+  font-size: 1.2rem;
+  font-family: 'Orbitron', sans-serif;
+  text-shadow: 0 0 10px var(--color-neon-cyan);
+}
+
+/* Mobile Responsive */
 @media screen and (max-width: 768px) {
-  #bottomTab {
+  .bottom-tab {
     display: none;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .tab-content {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .language-stat {
+    grid-column: span 1;
   }
 }
 

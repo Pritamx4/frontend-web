@@ -439,35 +439,96 @@
       </section>
     </main>
 
-    <div class="bottom hidden shown" id="bottomTab">
-    <button class="toggle-btn" onclick="toggleBottomTab()">
-        <i id="icon" class="fa fa-angle-down"></i>
-    </button>
-
-    <div class="terminal-wrapper">
-        <div class="terminal-left">
-            <div id="terminal-text"></div>
+    <!-- Bottom Stats Tab -->
+    <div class="bottom-tab" id="bottomTab">
+      <button class="tab-toggle" onclick="toggleBottomTab()">
+        <i id="toggleIcon" class="fa fa-chevron-up"></i>
+      </button>
+      
+      <div class="tab-content">
+        <div class="terminal-output" id="terminalText"></div>
+        
+        <div class="stats-grid" id="statsGrid" style="opacity: 0;">
+          <canvas class="sparkle-canvas" id="sparkleCanvas"></canvas>
+          
+          <!-- Stats Chart -->
+          <div class="stats-chart-container graph">
+            <canvas id="statsChart" width="700" height="350"></canvas>
+          </div>
+          
+          <!-- Language Stats -->
+          <div class="stat-item language-stat">
+            <span class="stat-label">HTML</span>
+            <div class="stat-bar-bg"><div class="stat-bar" data-lang="html" style="width: 0%"></div></div>
+            <span class="stat-percent" id="htmlPercent">0%</span>
+          </div>
+          
+          <div class="stat-item language-stat">
+            <span class="stat-label">CSS</span>
+            <div class="stat-bar-bg"><div class="stat-bar" data-lang="css" style="width: 0%"></div></div>
+            <span class="stat-percent" id="cssPercent">0%</span>
+          </div>
+          
+          <div class="stat-item language-stat">
+            <span class="stat-label">JavaScript</span>
+            <div class="stat-bar-bg"><div class="stat-bar" data-lang="js" style="width: 0%"></div></div>
+            <span class="stat-percent" id="jsPercent">0%</span>
+          </div>
+          
+          <!-- GitHub Stats Row 1 -->
+          <div class="stat-item github-stat">
+            <span class="stat-label"><i class="fa fa-code-branch"></i> Commits</span>
+            <span class="stat-value" id="commitCount">0</span>
+          </div>
+          
+          <div class="stat-item github-stat">
+            <span class="stat-label"><i class="fa fa-folder"></i> Repos</span>
+            <span class="stat-value" id="repoCount">0</span>
+          </div>
+          
+          <div class="stat-item github-stat">
+            <span class="stat-label"><i class="fa fa-star"></i> Stars</span>
+            <span class="stat-value" id="starCount">0</span>
+          </div>
+          
+          <div class="stat-item github-stat">
+            <span class="stat-label"><i class="fa fa-code-fork"></i> Forks</span>
+            <span class="stat-value" id="forkCount">0</span>
+          </div>
+          
+          <!-- GitHub Stats Row 2 -->
+          <div class="stat-item github-stat">
+            <span class="stat-label"><i class="fa fa-eye"></i> Watchers</span>
+            <span class="stat-value" id="watcherCount">0</span>
+          </div>
+          
+          <div class="stat-item github-stat">
+            <span class="stat-label"><i class="fa fa-exclamation-circle"></i> Issues</span>
+            <span class="stat-value" id="issueCount">0</span>
+          </div>
+          
+          <div class="stat-item github-stat">
+            <span class="stat-label"><i class="fa fa-users"></i> Contributors</span>
+            <span class="stat-value" id="contributorCount">0</span>
+          </div>
+          
+          <div class="stat-item github-stat">
+            <span class="stat-label"><i class="fa fa-database"></i> Size</span>
+            <span class="stat-value" id="repoSize">0 KB</span>
+          </div>
+          
+          <div class="stat-item github-stat">
+            <span class="stat-label"><i class="fa fa-clock"></i> Updated</span>
+            <span class="stat-value" id="lastUpdated">-</span>
+          </div>
+          
+          <div class="stat-item github-stat">
+            <span class="stat-label"><i class="fa fa-code-branch"></i> Branches</span>
+            <span class="stat-value" id="branchCount">0</span>
+          </div>
         </div>
-
-        <div class="terminal-right" id="stats-container" style="opacity: 0;">
-            <div class="stat-row">
-                <span>HTML</span>
-                <div class="progress-bg"><div class="progress-bar" style="width: 55%"></div></div>
-                <span class="percent">55%</span>
-            </div>
-            <div class="stat-row">
-                <span>CSS</span>
-                <div class="progress-bg"><div class="progress-bar" style="width: 35%"></div></div>
-                <span class="percent">35%</span>
-            </div>
-            <div class="stat-row">
-                <span>JavaScript</span>
-                <div class="progress-bg"><div class="progress-bar" style="width: 10%"></div></div>
-                <span class="percent">10%</span>
-            </div>
-        </div>
+      </div>
     </div>
-</div>
 
     <!-- Toast Notification -->
     <div id="toast" class="toast">
