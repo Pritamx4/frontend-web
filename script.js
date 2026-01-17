@@ -158,44 +158,28 @@ function animateNavbarEntry() {
   });
 }
 
-// Hide/Show Navbar Links on Scroll (keep logo visible)
+// Add blur background on scroll (Desktop Only)
 let lastScrollTop = 0;
 let scrollTimeout;
 
 window.addEventListener('scroll', () => {
-  if (typeof gsap === 'undefined') return;
-  
   // Clear previous timeout
   clearTimeout(scrollTimeout);
   
   // Debounce scroll event
   scrollTimeout = setTimeout(() => {
-    const navLinks = document.querySelector('.nav-links');
+    const navbar = document.querySelector('.navbar');
     const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
     
-    // Only apply on desktop (not in mobile menu)
-    if (window.innerWidth > 768) {
-      if (currentScroll > lastScrollTop && currentScroll > 100) {
-        // Scrolling down - hide links
-        gsap.to('.nav-links', {
-          opacity: 0,
-          y: -20,
-          duration: 0.3,
-          ease: 'power2.in'
-        });
-      } else {
-        // Scrolling up - show links
-        gsap.to('.nav-links', {
-          opacity: 1,
-          y: 0,
-          duration: 0.3,
-          ease: 'power2.out'
-        });
-      }
+    // Add blur background after scrolling
+    if (currentScroll > 50) {
+      navbar.classList.add('scrolled');
+    } else {
+      navbar.classList.remove('scrolled');
     }
     
     lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
-  }, 50); // 50ms debounce
+  }, 50);
 });
 
 // Sound System
@@ -735,25 +719,25 @@ if (typeof gsap !== 'undefined' && gsap.registerPlugin) {
       gsap.from(card, {
         scrollTrigger: {
           trigger: card,
-          start: 'top 80%',
+          start: 'top 90%',
           end: 'bottom 20%',
           toggleActions: 'play none none reverse'
         },
         opacity: 0,
-        y: 50,
-        duration: 0.8,
-        delay: index * 0.1,
+        y: 30,
+        duration: 0.6,
+        delay: index * 0.05,
         ease: 'power3.out'
       });
 
       gsap.to(progressBar, {
         scrollTrigger: {
           trigger: card,
-          start: 'top 80%',
+          start: 'top 85%',
         },
         width: targetWidth + '%',
-        duration: 1.5,
-        delay: index * 0.1 + 0.3,
+        duration: 1.2,
+        delay: index * 0.05 + 0.1,
         ease: 'power2.out'
       });
     });
@@ -766,5 +750,160 @@ if (typeof gsap !== 'undefined' && gsap.registerPlugin) {
     });
   }
 }
+
+// ========================================
+// PARTICLE BURST ON CLICK
+// ========================================
+const particleCanvas = document.getElementById('particleCanvas');
+const particleCtx = particleCanvas ? particleCanvas.getContext('2d') : null;
+
+if (particleCanvas && particleCtx) {
+  particleCanvas.width = window.innerWidth;
+  particleCanvas.height = window.innerHeight;
+
+  window.addEventListener('resize', () => {
+    particleCanvas.width = window.innerWidth;
+    particleCanvas.height = window.innerHeight;
+  });
+
+  const particles = [];
+
+  class Particle {
+    constructor(x, y) {
+      this.x = x;
+      this.y = y;
+      this.vx = (Math.random() - 0.5) * 8;
+      this.vy = (Math.random() - 0.5) * 8;
+      this.life = 1;
+      this.decay = Math.random() * 0.02 + 0.01;
+      this.size = Math.random() * 3 + 2;
+      this.color = Math.random() > 0.5 ? '#00fff7' : '#ff4ddb';
+    }
+
+    update() {
+      this.x += this.vx;
+      this.y += this.vy;
+      this.vy += 0.2; // gravity
+      this.life -= this.decay;
+    }
+
+    draw() {
+      particleCtx.save();
+      particleCtx.globalAlpha = this.life;
+      particleCtx.fillStyle = this.color;
+      particleCtx.shadowBlur = 15;
+      particleCtx.shadowColor = this.color;
+      particleCtx.beginPath();
+      particleCtx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+      particleCtx.fill();
+      particleCtx.restore();
+    }
+  }
+
+  function createParticleBurst(x, y, count = 20) {
+    for (let i = 0; i < count; i++) {
+      particles.push(new Particle(x, y));
+    }
+  }
+
+  function animateParticles() {
+    particleCtx.clearRect(0, 0, particleCanvas.width, particleCanvas.height);
+    
+    for (let i = particles.length - 1; i >= 0; i--) {
+      particles[i].update();
+      particles[i].draw();
+      
+      if (particles[i].life <= 0) {
+        particles.splice(i, 1);
+      }
+    }
+    
+    requestAnimationFrame(animateParticles);
+  }
+
+  animateParticles();
+
+  // Add click listener for particle burst
+  document.addEventListener('click', (e) => {
+    createParticleBurst(e.clientX, e.clientY, 25);
+    try { createSound(800, 'sine', 0.05, 0.08); } catch(err) {}
+  });
+}
+
+// ========================================
+// PARALLAX SCROLL EFFECT
+// ========================================
+let ticking = false;
+
+window.addEventListener('scroll', () => {
+  if (!ticking) {
+    window.requestAnimationFrame(() => {
+      const scrolled = window.pageYOffset;
+      
+      // Parallax for hero section
+      const heroSection = document.querySelector('.hero-section');
+      if (heroSection) {
+        heroSection.style.transform = `translateY(${scrolled * 0.4}px)`;
+      }
+      
+      // Parallax for matrix canvas
+      const matrixCanvas = document.getElementById('matrixCanvas');
+      if (matrixCanvas) {
+        matrixCanvas.style.transform = `translateY(${scrolled * 0.3}px)`;
+      }
+      
+      // Parallax for cubes
+      const cubes = document.querySelectorAll('.cube');
+      cubes.forEach((cube, index) => {
+        const speed = 0.15 + (index * 0.05);
+        cube.style.transform = `translateY(${scrolled * speed}px) rotateX(${scrolled * 0.05}deg) rotateY(${scrolled * 0.05}deg)`;
+      });
+      
+      ticking = false;
+    });
+    
+    ticking = true;
+  }
+});
+
+// ========================================
+// LAZY LOADING IMAGES
+// ========================================
+const lazyImages = document.querySelectorAll('img[loading=\"lazy\"]');
+
+const imageObserver = new IntersectionObserver((entries, observer) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const img = entry.target;
+      img.classList.add('loaded');
+      observer.unobserve(img);
+    }
+  });
+});
+
+lazyImages.forEach(img => imageObserver.observe(img));
+
+// ========================================
+// ENHANCED SECTION TRANSITIONS
+// ========================================
+const snapSections = document.querySelectorAll('.snap-section');
+
+const sectionObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.style.opacity = '1';
+      entry.target.style.transform = 'translateY(0)';
+    }
+  });
+}, {
+  threshold: 0.05
+});
+
+snapSections.forEach(section => {
+  section.style.opacity = '0';
+  section.style.transform = 'translateY(30px)';
+  section.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+  sectionObserver.observe(section);
+});
 
 
